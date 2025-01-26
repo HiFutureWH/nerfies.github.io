@@ -1,26 +1,12 @@
 <!DOCTYPE html>
-<html>
+<html lang="zh-CN">
 <head>
   <meta charset="utf-8">
   <meta name="description"
-        content="Deformable Neural Radiance Fields creates free-viewpoint portraits (nerfies) from casually captured videos.">
-  <meta name="keywords" content="Nerfies, D-NeRF, NeRF">
+        content="RNAscope benchmarks RNA language models to enhance RNA sequence understanding across various tasks.">
+  <meta name="keywords" content="RNAscope, RNA Language Models, RNA Sequence Understanding, Benchmarking">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Nerfies: Deformable Neural Radiance Fields</title>
-
-  <!-- Global site tag (gtag.js) - Google Analytics -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-PYVRSFMDRL"></script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-
-    function gtag() {
-      dataLayer.push(arguments);
-    }
-
-    gtag('js', new Date());
-
-    gtag('config', 'G-PYVRSFMDRL');
-  </script>
+  <title>RNAscope: Benchmarking RNA Language Models for RNA Sequence Understanding</title>
 
   <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro"
         rel="stylesheet">
@@ -39,6 +25,56 @@
   <script src="./static/js/bulma-carousel.min.js"></script>
   <script src="./static/js/bulma-slider.min.js"></script>
   <script src="./static/js/index.js"></script>
+
+  <style>
+    /* 自定义样式用于高亮最佳和次佳模型 */
+    .best {
+      background-color: #38D092 !important; /* 深绿色 */
+      color: white;
+    }
+    .second-best {
+      background-color: #75ECBC !important; /* 浅绿色 */
+      color: white;
+    }
+    /* 确保子脚注字体较小 */
+    sub {
+      font-size: 0.7em;
+    }
+    /* 表格标题样式 */
+    table caption {
+      caption-side: top;
+      text-align: left;
+      font-weight: bold;
+      padding-bottom: 0.5em;
+    }
+    /* 按钮样式调整 */
+    .toggle-button {
+      margin-top: 1em;
+      margin-bottom: 1em;
+    }
+    /* 详细结果表格的样式 */
+    .detailed-table {
+      display: none; /* 初始隐藏 */
+      margin-top: 1em;
+    }
+    /* 表格单元格对齐 */
+    table th, table td {
+      text-align: center;
+    }
+    /* 调整表格行的背景色以匹配LaTeX中的cellcolor */
+    .lightblue {
+      background-color: #75ECBC !important; /* 浅绿色 */
+      color: white;
+    }
+    .darkblue {
+      background-color: #38D092 !important; /* 深绿色 */
+      color: white;
+    }
+    /* 新增样式：表格容器，允许水平滚动 */
+    .table-container {
+      overflow-x: auto;
+    }
+  </style>
 </head>
 <body>
 
@@ -52,122 +88,22 @@
   </div>
   <div class="navbar-menu">
     <div class="navbar-start" style="flex-grow: 1; justify-content: center;">
-      <a class="navbar-item" href="https://keunhong.com">
-      <span class="icon">
-          <i class="fas fa-home"></i>
-      </span>
-      </a>
-
-      <div class="navbar-item has-dropdown is-hoverable">
-        <a class="navbar-link">
-          More Research
-        </a>
-        <div class="navbar-dropdown">
-          <a class="navbar-item" href="https://hypernerf.github.io">
-            HyperNeRF
-          </a>
-          <a class="navbar-item" href="https://nerfies.github.io">
-            Nerfies
-          </a>
-          <a class="navbar-item" href="https://latentfusion.github.io">
-            LatentFusion
-          </a>
-          <a class="navbar-item" href="https://photoshape.github.io">
-            PhotoShape
-          </a>
-        </div>
-      </div>
+      <!-- 为了双盲审稿，移除了导航链接 -->
     </div>
-
   </div>
 </nav>
 
-
+<!-- 主标题部分 -->
 <section class="hero">
   <div class="hero-body">
     <div class="container is-max-desktop">
       <div class="columns is-centered">
         <div class="column has-text-centered">
-          <h1 class="title is-1 publication-title">Nerfies: Deformable Neural Radiance Fields</h1>
-          <div class="is-size-5 publication-authors">
-            <span class="author-block">
-              <a href="https://keunhong.com">Keunhong Park</a><sup>1</sup>,</span>
-            <span class="author-block">
-              <a href="https://utkarshsinha.com">Utkarsh Sinha</a><sup>2</sup>,</span>
-            <span class="author-block">
-              <a href="https://jonbarron.info">Jonathan T. Barron</a><sup>2</sup>,
-            </span>
-            <span class="author-block">
-              <a href="http://sofienbouaziz.com">Sofien Bouaziz</a><sup>2</sup>,
-            </span>
-            <span class="author-block">
-              <a href="https://www.danbgoldman.com">Dan B Goldman</a><sup>2</sup>,
-            </span>
-            <span class="author-block">
-              <a href="https://homes.cs.washington.edu/~seitz/">Steven M. Seitz</a><sup>1,2</sup>,
-            </span>
-            <span class="author-block">
-              <a href="http://www.ricardomartinbrualla.com">Ricardo Martin-Brualla</a><sup>2</sup>
-            </span>
-          </div>
+          <h1 class="title is-1 publication-title">RNAscope: Benchmarking RNA Language Models for RNA Sequence Understanding</h1>
+          <!-- 为了双盲审稿，移除了作者信息 -->
 
-          <div class="is-size-5 publication-authors">
-            <span class="author-block"><sup>1</sup>University of Washington,</span>
-            <span class="author-block"><sup>2</sup>Google Research</span>
-          </div>
-
-          <div class="column has-text-centered">
-            <div class="publication-links">
-              <!-- PDF Link. -->
-              <span class="link-block">
-                <a href="https://arxiv.org/pdf/2011.12948"
-                   class="external-link button is-normal is-rounded is-dark">
-                  <span class="icon">
-                      <i class="fas fa-file-pdf"></i>
-                  </span>
-                  <span>Paper</span>
-                </a>
-              </span>
-              <span class="link-block">
-                <a href="https://arxiv.org/abs/2011.12948"
-                   class="external-link button is-normal is-rounded is-dark">
-                  <span class="icon">
-                      <i class="ai ai-arxiv"></i>
-                  </span>
-                  <span>arXiv</span>
-                </a>
-              </span>
-              <!-- Video Link. -->
-              <span class="link-block">
-                <a href="https://www.youtube.com/watch?v=MrKrnHhk8IA"
-                   class="external-link button is-normal is-rounded is-dark">
-                  <span class="icon">
-                      <i class="fab fa-youtube"></i>
-                  </span>
-                  <span>Video</span>
-                </a>
-              </span>
-              <!-- Code Link. -->
-              <span class="link-block">
-                <a href="https://github.com/google/nerfies"
-                   class="external-link button is-normal is-rounded is-dark">
-                  <span class="icon">
-                      <i class="fab fa-github"></i>
-                  </span>
-                  <span>Code</span>
-                  </a>
-              </span>
-              <!-- Dataset Link. -->
-              <span class="link-block">
-                <a href="https://github.com/google/nerfies/releases/tag/0.1"
-                   class="external-link button is-normal is-rounded is-dark">
-                  <span class="icon">
-                      <i class="far fa-images"></i>
-                  </span>
-                  <span>Data</span>
-                  </a>
-            </div>
-
+          <div class="publication-links">
+            <!-- 为了双盲审稿，移除了外部链接 -->
           </div>
         </div>
       </div>
@@ -175,316 +111,1963 @@
   </div>
 </section>
 
+<!-- Teaser部分（示意图片和简介） -->
 <section class="hero teaser">
   <div class="container is-max-desktop">
     <div class="hero-body">
-      <video id="teaser" autoplay muted loop playsinline height="100%">
-        <source src="./static/videos/teaser.mp4"
-                type="video/mp4">
-      </video>
+      <img src="./fig/UltraBench.jpg" alt="UltraBench Main Figure" style="width: 100%; height: auto;">
       <h2 class="subtitle has-text-centered">
-        <span class="dnerf">Nerfies</span> turns selfie videos from your phone into
-        free-viewpoint
-        portraits.
+        RNAscope provides a comprehensive benchmark for evaluating RNA language models across diverse tasks.
       </h2>
     </div>
   </div>
 </section>
 
-
-<section class="hero is-light is-small">
-  <div class="hero-body">
-    <div class="container">
-      <div id="results-carousel" class="carousel results-carousel">
-        <div class="item item-steve">
-          <video poster="" id="steve" autoplay controls muted loop playsinline height="100%">
-            <source src="./static/videos/steve.mp4"
-                    type="video/mp4">
-          </video>
-        </div>
-        <div class="item item-chair-tp">
-          <video poster="" id="chair-tp" autoplay controls muted loop playsinline height="100%">
-            <source src="./static/videos/chair-tp.mp4"
-                    type="video/mp4">
-          </video>
-        </div>
-        <div class="item item-shiba">
-          <video poster="" id="shiba" autoplay controls muted loop playsinline height="100%">
-            <source src="./static/videos/shiba.mp4"
-                    type="video/mp4">
-          </video>
-        </div>
-        <div class="item item-fullbody">
-          <video poster="" id="fullbody" autoplay controls muted loop playsinline height="100%">
-            <source src="./static/videos/fullbody.mp4"
-                    type="video/mp4">
-          </video>
-        </div>
-        <div class="item item-blueshirt">
-          <video poster="" id="blueshirt" autoplay controls muted loop playsinline height="100%">
-            <source src="./static/videos/blueshirt.mp4"
-                    type="video/mp4">
-          </video>
-        </div>
-        <div class="item item-mask">
-          <video poster="" id="mask" autoplay controls muted loop playsinline height="100%">
-            <source src="./static/videos/mask.mp4"
-                    type="video/mp4">
-          </video>
-        </div>
-        <div class="item item-coffee">
-          <video poster="" id="coffee" autoplay controls muted loop playsinline height="100%">
-            <source src="./static/videos/coffee.mp4"
-                    type="video/mp4">
-          </video>
-        </div>
-        <div class="item item-toby">
-          <video poster="" id="toby" autoplay controls muted loop playsinline height="100%">
-            <source src="./static/videos/toby2.mp4"
-                    type="video/mp4">
-          </video>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-
+<!-- 主内容部分 -->
 <section class="section">
   <div class="container is-max-desktop">
-    <!-- Abstract. -->
-    <div class="columns is-centered has-text-centered">
-      <div class="column is-four-fifths">
-        <h2 class="title is-3">Abstract</h2>
-        <div class="content has-text-justified">
-          <p>
-            We present the first method capable of photorealistically reconstructing a non-rigidly
-            deforming scene using photos/videos captured casually from mobile phones.
-          </p>
-          <p>
-            Our approach augments neural radiance fields
-            (NeRF) by optimizing an
-            additional continuous volumetric deformation field that warps each observed point into a
-            canonical 5D NeRF.
-            We observe that these NeRF-like deformation fields are prone to local minima, and
-            propose a coarse-to-fine optimization method for coordinate-based models that allows for
-            more robust optimization.
-            By adapting principles from geometry processing and physical simulation to NeRF-like
-            models, we propose an elastic regularization of the deformation field that further
-            improves robustness.
-          </p>
-          <p>
-            We show that <span class="dnerf">Nerfies</span> can turn casually captured selfie
-            photos/videos into deformable NeRF
-            models that allow for photorealistic renderings of the subject from arbitrary
-            viewpoints, which we dub <i>"nerfies"</i>. We evaluate our method by collecting data
-            using a
-            rig with two mobile phones that take time-synchronized photos, yielding train/validation
-            images of the same pose at different viewpoints. We show that our method faithfully
-            reconstructs non-rigidly deforming scenes and reproduces unseen views with high
-            fidelity.
-          </p>
-        </div>
-      </div>
-    </div>
-    <!--/ Abstract. -->
-
-    <!-- Paper video. -->
-    <div class="columns is-centered has-text-centered">
-      <div class="column is-four-fifths">
-        <h2 class="title is-3">Video</h2>
-        <div class="publication-video">
-          <iframe src="https://www.youtube.com/embed/MrKrnHhk8IA?rel=0&amp;showinfo=0"
-                  frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
-        </div>
-      </div>
-    </div>
-    <!--/ Paper video. -->
-  </div>
-</section>
-
-
-<section class="section">
-  <div class="container is-max-desktop">
-
+    <!-- Leaderboard Section -->
     <div class="columns is-centered">
+      <div class="column is-full">
+        <h2 class="title is-3">Leaderboard</h2>
 
-      <!-- Visual Effects. -->
-      <div class="column">
+        <!-- Structure-related Tasks -->
         <div class="content">
-          <h2 class="title is-3">Visual Effects</h2>
-          <p>
-            Using <i>nerfies</i> you can create fun visual effects. This Dolly zoom effect
-            would be impossible without nerfies since it would require going through a wall.
-          </p>
-          <video id="dollyzoom" autoplay controls muted loop playsinline height="100%">
-            <source src="./static/videos/dollyzoom-stacked.mp4"
-                    type="video/mp4">
-          </video>
-        </div>
-      </div>
-      <!--/ Visual Effects. -->
+          <h3 class="title is-4">Structure-related Tasks</h3>
+          <p>Performance of RNA pLMs and baselines on structure-related tasks, including secondary structure prediction, chemical reactivity, and contact map prediction. Metrics include F1 scores for intra-family and inter-family tests, Mean Absolute Error (MAE) for chemical reactivity, and accuracy for contact map predictions.</p>
 
-      <!-- Matting. -->
-      <div class="column">
-        <h2 class="title is-3">Matting</h2>
-        <div class="columns is-centered">
-          <div class="column content">
-            <p>
-              As a byproduct of our method, we can also solve the matting problem by ignoring
-              samples that fall outside of a bounding box during rendering.
-            </p>
-            <video id="matting-video" controls playsinline height="100%">
-              <source src="./static/videos/matting.mp4"
-                      type="video/mp4">
-            </video>
+          <!-- 主表格 -->
+          <table class="table is-striped is-bordered is-hoverable is-fullwidth">
+            <caption>Benchmark results for structure tasks. Results are reported as <em>mean (std)</em> from three runs with different seeds. The <span class="darkblue"><strong>best</strong></span> and <span class="lightblue"><strong>second-best</strong></span> models for each test set are highlighted in two shades of green. Three classifier modules—MLP, shallow CNN, and ResNet—are used with frozen pLM weights.</caption>
+            <thead>
+              <tr>
+                <th rowspan="3">Model</th>
+                <th colspan="2">Second Structure</th>
+                <th colspan="2">Chemical Reactivity</th>
+                <th colspan="2">Contact Map</th>
+              </tr>
+              <tr>
+                <th>Intra-family</th>
+                <th>Inter-family</th>
+                <th>TestS</th>
+                <th>TestL</th>
+                <th>Short@L/5 ↑</th>
+                <th>Long@L/5 ↑</th>
+              </tr>
+              <tr>
+                <th>F1 ↑</th>
+                <th>F1 ↑</th>
+                <th>MAE ↓</th>
+                <th>MAE ↓</th>
+                <th>Short@L/5 ↑</th>
+                <th>Long@L/5 ↑</th>
+              </tr>
+            </thead>
+            <tbody>
+              <!-- 完整的结构任务表格内容 -->
+               <tr>
+                <td>One-hot</td>
+                <td>0.548<sub>(0.003)</sub></td>
+                <td>0.482<sub>(0.006)</sub></td>
+                <td class="lightblue">0.179<sub>(0.001)</sub></td>
+                <td class="lightblue">0.167<sub>(0.002)</sub></td>
+                <td class="lightblue">0.158<sub>(0.006)</sub></td>
+                <td class="lightblue">0.168<sub>(0.007)</sub></td>
+              </tr>
+              <tr>
+                <td>Dense</td>
+                <td>0.552<sub>(0.002)</sub></td>
+                <td>0.501<sub>(0.007)</sub></td>
+                <td class="darkblue">0.176<sub>(0.001)</sub></td>
+                <td>0.174<sub>(0.002)</sub></td>
+                <td class="darkblue">0.190<sub>(0.015)</sub></td>
+                <td class="darkblue">0.170<sub>(0.006)</sub></td>
+              </tr>
+              <tr>
+                <td colspan="7"><strong>(+MLP)</strong></td>
+              </tr>
+              <tr>
+                <td>RNABERT_mlp</td>
+                <td>0.551<sub>(0.004)</sub></td>
+                <td>0.541<sub>(0.003)</sub></td>
+                <td>0.255<sub>(0.000)</sub></td>
+                <td>0.266<sub>(0.001)</sub></td>
+                <td>0.013<sub>(0.001)</sub></td>
+                <td>0.021<sub>(0.003)</sub></td>
+              </tr>
+              <tr>
+                <td>RNA-FM_mlp</td>
+                <td>0.766<sub>(0.004)</sub></td>
+                <td class="darkblue">0.608<sub>(0.002)</sub></td>
+                <td>0.214<sub>(0.001)</sub></td>
+                <td>0.187<sub>(0.003)</sub></td>
+                <td>0.137<sub>(0.003)</sub></td>
+                <td>0.129<sub>(0.002)</sub></td>
+              </tr>
+              <tr>
+                <td>3UTRBERT_mlp</td>
+                <td>0.647<sub>(0.012)</sub></td>
+                <td>0.597<sub>(0.003)</sub></td>
+                <td>0.202<sub>(0.001)</sub></td>
+                <td>0.195<sub>(0.002)</sub></td>
+                <td>0.103<sub>(0.002)</sub></td>
+                <td>0.086<sub>(0.003)</sub></td>
+              </tr>
+              <tr>
+                <td>SpliceBERT_mlp</td>
+                <td>0.651<sub>(0.024)</sub></td>
+                <td>0.586<sub>(0.011)</sub></td>
+                <td>0.207<sub>(0.001)</sub></td>
+                <td>0.207<sub>(0.001)</sub></td>
+                <td>0.111<sub>(0.002)</sub></td>
+                <td>0.121<sub>(0.002)</sub></td>
+              </tr>
+              <tr>
+                <td colspan="7"><strong>(+CNN)</strong></td>
+              </tr>
+              <tr>
+                <td>RNABERT_cnn</td>
+                <td>0.598<sub>(0.003)</sub></td>
+                <td>0.571<sub>(0.005)</sub></td>
+                <td>0.228<sub>(0.001)</sub></td>
+                <td>0.241<sub>(0.002)</sub></td>
+                <td>0.117<sub>(0.005)</sub></td>
+                <td>0.102<sub>(0.002)</sub></td>
+              </tr>
+              <tr>
+                <td>RNA-FM_cnn</td>
+                <td class="darkblue">0.786<sub>(0.001)</sub></td>
+                <td>0.590<sub>(0.005)</sub></td>
+                <td>0.197<sub>(0.003)</sub></td>
+                <td>0.176<sub>(0.001)</sub></td>
+                <td>0.141<sub>(0.005)</sub></td>
+                <td>0.150<sub>(0.004)</sub></td>
+              </tr>
+              <tr>
+                <td>3UTRBERT_cnn</td>
+                <td>0.672<sub>(0.005)</sub></td>
+                <td>0.588<sub>(0.016)</sub></td>
+                <td>0.192<sub>(0.000)</sub></td>
+                <td>0.182<sub>(0.002)</sub></td>
+                <td>0.138<sub>(0.004)</sub></td>
+                <td>0.109<sub>(0.005)</sub></td>
+              </tr>
+              <tr>
+                <td>SpliceBERT_cnn</td>
+                <td>0.691<sub>(0.003)</sub></td>
+                <td>0.565<sub>(0.004)</sub></td>
+                <td>0.196<sub>(0.001)</sub></td>
+                <td>0.179<sub>(0.002)</sub></td>
+                <td>0.150<sub>(0.007)</sub></td>
+                <td>0.140<sub>(0.004)</sub></td>
+              </tr>
+              <tr>
+                <td colspan="7"><strong>(+ResNet)</strong></td>
+              </tr>
+              <tr>
+                <td>RNABERT_resnet</td>
+                <td>0.685<sub>(0.003)</sub></td>
+                <td>0.576<sub>(0.015)</sub></td>
+                <td>0.181<sub>(0.002)</sub></td>
+                <td>0.175<sub>(0.003)</sub></td>
+                <td>0.084<sub>(0.003)</sub></td>
+                <td>0.083<sub>(0.003)</sub></td>
+              </tr>
+              <tr>
+                <td>RNA-FM_resnet</td>
+                <td class="lightblue">0.775<sub>(0.001)</sub></td>
+                <td class="lightblue">0.607<sub>(0.001)</sub></td>
+                <td>0.196<sub>(0.004)</sub></td>
+                <td class="darkblue">0.166<sub>(0.004)</sub></td>
+                <td>0.145<sub>(0.008)</sub></td>
+                <td>0.150<sub>(0.007)</sub></td>
+              </tr>
+              <tr>
+                <td>3UTRBERT_resnet</td>
+                <td>0.685<sub>(0.007)</sub></td>
+                <td>0.576<sub>(0.015)</sub></td>
+                <td>0.187<sub>(0.002)</sub></td>
+                <td>0.172<sub>(0.004)</sub></td>
+                <td>0.137<sub>(0.016)</sub></td>
+                <td>0.122<sub>(0.002)</sub></td>
+              </tr>
+              <tr>
+                <td>SpliceBERT_resnet</td>
+                <td>0.695<sub>(0.006)</sub></td>
+                <td>0.574<sub>(0.005)</sub></td>
+                <td>0.193<sub>(0.004)</sub></td>
+                <td>0.177<sub>(0.003)</sub></td>
+                <td>0.155<sub>(0.002)</sub></td>
+                <td>0.161<sub>(0.009)</sub></td>
+              </tr>
+            </tbody>
+          </table>
+
+          <!-- 切换按钮 -->
+          <button class="button is-link toggle-button" id="toggle-details" aria-controls="detailed-results" aria-expanded="false">
+            Show Detailed Results for Second Structure
+          </button>
+
+          <!-- 详细结果表格 -->
+          <div class="detailed-table" id="detailed-results">
+            <table class="table is-striped is-bordered is-hoverable is-fullwidth">
+              <caption>Performance of RNA pLMs and baselines on secondary structure prediction, including Precision and Recall for both intra-family and inter-family tests. Results are <em>mean (std)</em> from three runs with different seeds, with the <span class="darkblue"><strong>best</strong></span> and <span class="lightblue"><strong>second-best</strong></span> models highlighted.</caption>
+              <thead>
+                <tr>
+                  <th rowspan="3">Model</th>
+                  <th colspan="4">Second Structure</th>
+                </tr>
+                <tr>
+                  <th colspan="2" style="text-align:center;">Intra-family Test</th>
+                  <th colspan="2" style="text-align:center;">Inter-family Test</th>
+                </tr>
+                <tr>
+                  <th>Precision ↑</th>
+                  <th>Recall ↑</th>
+                  <th>Precision ↑</th>
+                  <th>Recall ↑</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>One-hot</td>
+                  <td>0.465<sub>(0.008)</sub></td>
+                  <td>0.668<sub>(0.021)</sub></td>
+                  <td>0.399<sub>(0.002)</sub></td>
+                  <td>0.608<sub>(0.022)</sub></td>
+                </tr>
+                <tr>
+                  <td>Dense</td>
+                  <td>0.433<sub>(0.015)</sub></td>
+                  <td>0.763<sub>(0.039)</sub></td>
+                  <td>0.387<sub>(0.006)</sub></td>
+                  <td>0.712<sub>(0.047)</sub></td>
+                </tr>
+                <tr>
+                  <td colspan="5"><strong>(+MLP)</strong></td>
+                </tr>
+                <tr>
+                  <td>RNABERT_mlp</td>
+                  <td>0.551<sub>(0.003)</sub></td>
+                  <td>0.551<sub>(0.007)</sub></td>
+                  <td>0.517<sub>(0.000)</sub></td>
+                  <td>0.567<sub>(0.007)</sub></td>
+                </tr>
+                <tr>
+                  <td>RNA-FM_mlp</td>
+                  <td class="lightblue">0.747<sub>(0.001)</sub></td>
+                  <td>0.788<sub>(0.007)</sub></td>
+                  <td class="darkblue">0.563<sub>(0.003)</sub></td>
+                  <td>0.661<sub>(0.008)</sub></td>
+                </tr>
+                <tr>
+                  <td>3UTRBERT_mlp</td>
+                  <td>0.600<sub>(0.008)</sub></td>
+                  <td>0.702<sub>(0.022)</sub></td>
+                  <td>0.529<sub>(0.006)</sub></td>
+                  <td>0.686<sub>(0.017)</sub></td>
+                </tr>
+                <tr>
+                  <td>SpliceBERT_mlp</td>
+                  <td>0.613<sub>(0.018)</sub></td>
+                  <td>0.696<sub>(0.040)</sub></td>
+                  <td>0.533<sub>(0.007)</sub></td>
+                  <td>0.652<sub>(0.034)</sub></td>
+                </tr>
+                <tr>
+                  <td colspan="5"><strong>(+CNN)</strong></td>
+                </tr>
+                <tr>
+                  <td>RNABERT_cnn</td>
+                  <td>0.587<sub>(0.004)</sub></td>
+                  <td>0.610<sub>(0.011)</sub></td>
+                  <td class="lightblue">0.542<sub>(0.002)</sub></td>
+                  <td>0.603<sub>(0.013)</sub></td>
+                </tr>
+                <tr>
+                  <td>RNA-FM_cnn</td>
+                  <td class="darkblue">0.763<sub>(0.009)</sub></td>
+                  <td>0.812<sub>(0.012)</sub></td>
+                  <td>0.541<sub>(0.007)</sub></td>
+                  <td>0.650<sub>(0.015)</sub></td>
+                </tr>
+                <tr>
+                  <td>3UTRBERT_cnn</td>
+                  <td>0.612<sub>(0.015)</sub></td>
+                  <td>0.748<sub>(0.019)</sub></td>
+                  <td>0.509<sub>(0.011)</sub></td>
+                  <td>0.697<sub>(0.037)</sub></td>
+                </tr>
+                <tr>
+                  <td>SpliceBERT_cnn</td>
+                  <td>0.634<sub>(0.003)</sub></td>
+                  <td>0.760<sub>(0.011)</sub></td>
+                  <td>0.496<sub>(0.005)</sub></td>
+                  <td>0.656<sub>(0.013)</sub></td>
+                </tr>
+                <tr>
+                  <td colspan="5"><strong>(+ResNet)</strong></td>
+                </tr>
+                <tr>
+                  <td>RNABERT_resnet</td>
+                  <td>0.593<sub>(0.026)</sub></td>
+                  <td class="lightblue">0.818<sub>(0.058)</sub></td>
+                  <td>0.479<sub>(0.011)</sub></td>
+                  <td class="darkblue">0.730<sub>(0.077)</sub></td>
+                </tr>
+                <tr>
+                  <td>RNA-FM_resnet</td>
+                  <td class="lightblue">0.734<sub>(0.008)</sub></td>
+                  <td class="darkblue">0.820<sub>(0.012)</sub></td>
+                  <td>0.540<sub>(0.009)</sub></td>
+                  <td class="darkblue">0.693<sub>(0.016)</sub></td>
+                </tr>
+                <tr>
+                  <td>3UTRBERT_resnet</td>
+                  <td>0.597<sub>(0.010)</sub></td>
+                  <td>0.804<sub>(0.036)</sub></td>
+                  <td>0.485<sub>(0.004)</sub></td>
+                  <td class="lightblue">0.713<sub>(0.051)</sub></td>
+                </tr>
+                <tr>
+                  <td>SpliceBERT_resnet</td>
+                  <td>0.627<sub>(0.012)</sub></td>
+                  <td>0.781<sub>(0.033)</sub></td>
+                  <td>0.491<sub>(0.008)</sub></td>
+                  <td>0.692<sub>(0.031)</sub></td>
+                </tr>
+              </tbody>
+            </table>
+            <p><em>注：</em> ↑ 表示指标越高越好，↓ 表示指标越低越好。</p>
+          </div> <!-- End of Detailed-results -->
+
+
+          <!-- Interaction-related Tasks -->
+          <div class="content">
+            <h3 class="title is-4">Interaction-related Tasks</h3>
+            <p>Benchmark results on interaction tasks, including binary binding classification, systematic binding, and binding affinity.</p>
+
+            <table class="table is-striped is-bordered is-hoverable is-fullwidth">
+              <caption>Benchmark results on interaction tasks. Results are <em>mean (std)</em> from three runs with different seeds, with the <span class="darkblue"><strong>best</strong></span> and <span class="lightblue"><strong>second-best</strong></span> models highlighted. Binary binding classification task comprises 22 RBP datasets, with average performance reported. Further detailed in Tables <a href="#tab:ref_results_interaction_rbp1">ref_results_interaction_rbp1</a> and <a href="#tab:ref_results_interaction_rbp2">ref_results_interaction_rbp2</a> in the Appendix.</caption>
+              <thead>
+                <tr>
+                  <th rowspan="3">Model</th>
+                  <th colspan="1">Binary Binding</th>
+                  <th colspan="3">Systematic Binding</th>
+                  <th colspan="2">Binding Affinity</th>
+                </tr>
+                <tr>
+                  <th>22 RBP's Average</th>
+                  <th>DAse</th>
+                  <th>TARDBP</th>
+                  <th>ISLETS</th>
+                  <th>GFP Spear r</th>
+                  <th>NELF Spear r</th>
+                </tr>
+                <tr>
+                  <th>F1 ↑</th>
+                  <th>F1 ↑</th>
+                  <th>F1 ↑</th>
+                  <th>F1 ↑</th>
+                  <th>Spear r ↑</th>
+                  <th>Spear r ↑</th>
+                </tr>
+              </thead>
+              <tbody>
+                <!-- 完整的交互任务表格内容 -->
+                <tr>
+                  <td>One-hot</td>
+                  <td>0.703</td>
+                  <td>0.614<sub>(0.005)</sub></td>
+                  <td>0.461<sub>(0.010)</sub></td>
+                  <td class="darkblue">0.415<sub>(0.003)</sub></td>
+                  <td>0.215<sub>(0.008)</sub></td>
+                  <td class="lightblue">0.668<sub>(0.130)</sub></td>
+                </tr>
+                <tr>
+                  <td>Dense</td>
+                  <td>0.704</td>
+                  <td>0.622<sub>(0.001)</sub></td>
+                  <td class="darkblue">0.472<sub>(0.003)</sub></td>
+                  <td>0.412<sub>(0.002)</sub></td>
+                  <td>0.138<sub>(0.041)</sub></td>
+                  <td>0.388<sub>(0.059)</sub></td>
+                </tr>
+                <tr>
+                  <td colspan="7"><strong>(+MLP)</strong></td>
+                </tr>
+                <tr>
+                  <td>DNABERT2_mlp</td>
+                  <td>0.683</td>
+                  <td>0.629<sub>(0.003)</sub></td>
+                  <td>0.425<sub>(0.005)</sub></td>
+                  <td>0.403<sub>(0.002)</sub></td>
+                  <td>-0.124<sub>(0.044)</sub></td>
+                  <td>0.148<sub>(0.010)</sub></td>
+                </tr>
+                <tr>
+                  <td>HyenaDNA_mlp</td>
+                  <td>0.640</td>
+                  <td>0.522<sub>(0.004)</sub></td>
+                  <td>0.376<sub>(0.003)</sub></td>
+                  <td>0.317<sub>(0.015)</sub></td>
+                  <td>0.092<sub>(0.063)</sub></td>
+                  <td>0.140<sub>(0.005)</sub></td>
+                </tr>
+                <tr>
+                  <td>NT_mlp</td>
+                  <td>0.666</td>
+                  <td>0.599<sub>(0.010)</sub></td>
+                  <td>0.391<sub>(0.001)</sub></td>
+                  <td>0.360<sub>(0.035)</sub></td>
+                  <td>0.139<sub>(0.050)</sub></td>
+                  <td>0.314<sub>(0.004)</sub></td>
+                </tr>
+                <tr>
+                  <td>RNABERT_mlp</td>
+                  <td>0.539</td>
+                  <td>0.528<sub>(0.006)</sub></td>
+                  <td>0.307<sub>(0.006)</sub></td>
+                  <td>0.309<sub>(0.007)</sub></td>
+                  <td>-0.049<sub>(0.036)</sub></td>
+                  <td>0.129<sub>(0.005)</sub></td>
+                </tr>
+                <tr>
+                  <td>RNA-FM_mlp</td>
+                  <td>0.698</td>
+                  <td>0.605<sub>(0.006)</sub></td>
+                  <td>0.396<sub>(0.006)</sub></td>
+                  <td>0.369<sub>(0.012)</sub></td>
+                  <td>0.073<sub>(0.006)</sub></td>
+                  <td>0.331<sub>(0.009)</sub></td>
+                </tr>
+                <tr>
+                  <td>3UTRBERT_mlp</td>
+                  <td>0.716</td>
+                  <td>0.611<sub>(0.007)</sub></td>
+                  <td>0.401<sub>(0.005)</sub></td>
+                  <td>0.397<sub>(0.005)</sub></td>
+                  <td>-0.043<sub>(0.005)</sub></td>
+                  <td>0.317<sub>(0.046)</sub></td>
+                </tr>
+                <tr>
+                  <td>SpliceBERT_mlp</td>
+                  <td>0.736</td>
+                  <td>0.620<sub>(0.012)</sub></td>
+                  <td>0.396<sub>(0.007)</sub></td>
+                  <td>0.367<sub>(0.012)</sub></td>
+                  <td>0.079<sub>(0.010)</sub></td>
+                  <td>0.298<sub>(0.003)</sub></td>
+                </tr>
+                <tr>
+                  <td colspan="7"><strong>(+CNN)</strong></td>
+                </tr>
+                <tr>
+                  <td>DNABERT2_cnn</td>
+                  <td>0.685</td>
+                  <td>0.640<sub>(0.002)</sub></td>
+                  <td>0.456<sub>(0.001)</sub></td>
+                  <td>0.414<sub>(0.002)</sub></td>
+                  <td>-0.030<sub>(0.002)</sub></td>
+                  <td>0.241<sub>(0.021)</sub></td>
+                </tr>
+                <tr>
+                  <td>HyenaDNA_cnn</td>
+                  <td>0.697</td>
+                  <td>0.597<sub>(0.006)</sub></td>
+                  <td>0.438<sub>(0.004)</sub></td>
+                  <td>0.390<sub>(0.007)</sub></td>
+                  <td>0.139<sub>(0.011)</sub></td>
+                  <td>0.181<sub>(0.009)</sub></td>
+                </tr>
+                <tr>
+                  <td>NT_cnn</td>
+                  <td>0.674</td>
+                  <td>0.622<sub>(0.012)</sub></td>
+                  <td>0.448<sub>(0.006)</sub></td>
+                  <td>0.396<sub>(0.002)</sub></td>
+                  <td>0.138<sub>(0.017)</sub></td>
+                  <td>0.259<sub>(0.007)</sub></td>
+                </tr>
+                <tr>
+                  <td>RNABERT_cnn</td>
+                  <td>0.642</td>
+                  <td>0.538<sub>(0.002)</sub></td>
+                  <td>0.414<sub>(0.008)</sub></td>
+                  <td>0.341<sub>(0.007)</sub></td>
+                  <td>-0.016<sub>(0.003)</sub></td>
+                  <td>0.135<sub>(0.003)</sub></td>
+                </tr>
+                <tr>
+                  <td>RNA-FM_cnn</td>
+                  <td>0.724</td>
+                  <td class="lightblue">0.640<sub>(0.016)</sub></td>
+                  <td>0.460<sub>(0.013)</sub></td>
+                  <td>0.410<sub>(0.004)</sub></td>
+                  <td>0.224<sub>(0.073)</sub></td>
+                  <td>0.384<sub>(0.002)</sub></td>
+                </tr>
+                <tr>
+                  <td>3UTRBERT_cnn</td>
+                  <td>0.728</td>
+                  <td class="darkblue">0.642<sub>(0.002)</sub></td>
+                  <td>0.462<sub>(0.007)</sub></td>
+                  <td>0.403<sub>(0.003)</sub></td>
+                  <td>0.207<sub>(0.184)</sub></td>
+                  <td>0.194<sub>(0.008)</sub></td>
+                </tr>
+                <tr>
+                  <td>SpliceBERT_cnn</td>
+                  <td class="lightblue">0.748</td>
+                  <td>0.639<sub>(0.006)</sub></td>
+                  <td>0.466<sub>(0.003)</sub></td>
+                  <td class="lightblue">0.414<sub>(0.003)</sub></td>
+                  <td>0.107<sub>(0.011)</sub></td>
+                  <td>0.340<sub>(0.007)</sub></td>
+                </tr>
+                <tr>
+                  <td colspan="7"><strong>(+ResNet)</strong></td>
+                </tr>
+                <!-- 新增的 ResNet 模型 -->
+                <tr>
+                  <td>DNABERT2_resnet</td>
+                  <td>0.669<sub>(0.003)</sub></td>
+                  <td>0.617<sub>(0.009)</sub></td>
+                  <td>0.438<sub>(0.002)</sub></td>
+                  <td>0.401<sub>(0.006)</sub></td>
+                  <td>0.267<sub>(0.014)</sub></td>
+                  <td>0.580<sub>(0.029)</sub></td>
+                </tr>
+                <tr>
+                  <td>HyenaDNA_resnet</td>
+                  <td>0.727</td>
+                  <td>0.623<sub>(0.005)</sub></td>
+                  <td class="lightblue">0.471<sub>(0.003)</sub></td>
+                  <td>0.411<sub>(0.005)</sub></td>
+                  <td>0.376<sub>(0.032)</sub></td>
+                  <td>0.625<sub>(0.143)</sub></td>
+                </tr>
+                <tr>
+                  <td>NT_resnet</td>
+                  <td>0.681</td>
+                  <td>0.638<sub>(0.013)</sub></td>
+                  <td>0.454<sub>(0.004)</sub></td>
+                  <td>0.413<sub>(0.003)</sub></td>
+                  <td>0.334<sub>(0.009)</sub></td>
+                  <td>0.626<sub>(0.015)</sub></td>
+                </tr>
+                <tr>
+                  <td>RNABERT_resnet</td>
+                  <td>0.675</td>
+                  <td>0.599<sub>(0.003)</sub></td>
+                  <td>0.461<sub>(0.003)</sub></td>
+                  <td>0.404<sub>(0.002)</sub></td>
+                  <td>0.029<sub>(0.165)</sub></td>
+                  <td class="best">0.677<sub>(0.052)</sub></td>
+                </tr>
+                <tr>
+                  <td>RNA-FM_resnet</td>
+                  <td>0.719</td>
+                  <td>0.634<sub>(0.004)</sub></td>
+                  <td>0.460<sub>(0.008)</sub></td>
+                  <td>0.409<sub>(0.001)</sub></td>
+                  <td class="darkblue">0.407<sub>(0.046)</sub></td>
+                  <td>0.646<sub>(0.059)</sub></td>
+                </tr>
+                <tr>
+                  <td>3UTRBERT_resnet</td>
+                  <td>0.728</td>
+                  <td>0.624<sub>(0.009)</sub></td>
+                  <td>0.468<sub>(0.008)</sub></td>
+                  <td class="lightblue">0.414<sub>(0.002)</sub></td>
+                  <td class="lightblue">0.262<sub>(0.165)</sub></td>
+                  <td>0.498<sub>(0.213)</sub></td>
+                </tr>
+                <tr>
+                  <td>SpliceBERT_resnet</td>
+                  <td class="best">0.750</td>
+                  <td>0.617<sub>(0.013)</sub></td>
+                  <td>0.456<sub>(0.002)</sub></td>
+                  <td>0.406<sub>(0.003)</sub></td>
+                  <td>0.162<sub>(0.071)</sub></td>
+                  <td>0.510<sub>(0.040)</sub></td>
+                </tr>
+              </tbody>
+            </table>
+            <p><em>注：</em> ↑ 表示指标越高越好，↓ 表示指标越低越好。</p>
+          </div> <!-- End of Interaction-related Tasks -->
+
+          <!-- 新增部分：详细的 Binary Binding Interaction 结果 -->
+          <div class="content">
+            <h3 class="title is-4">Detailed Binary Binding Interaction Results</h3>
+            <p>Click the button below to view detailed results for binary binding interactions across 22 RNA-binding protein (RBP) datasets.</p>
+
+            <!-- 切换按钮 -->
+            <button class="button is-info toggle-button" id="toggle-interaction-details" aria-controls="interaction-detailed-results" aria-expanded="false">
+              Show Detailed Binary Binding Interaction Results
+            </button>
+
+              <!-- 详细结果表格 -->
+            <div class="detailed-table" id="interaction-detailed-results" style="display: none;">
+              <div class="table-container" style="overflow-x: auto;">
+                <table class="table is-striped is-bordered is-hoverable is-fullwidth" id="tab:ref_results_interaction_rbp">
+                  <caption>
+                    Detailed results for binary binding prediction across 22 datasets, each corresponding to one of 22 RNA-binding proteins (RBPs) in K562 and HepG2 cell lines. The reported values represent <em>mean (std)</em> obtained from three independent runs with distinct random seeds. The top-performing and second-best models for each dataset are highlighted in two shades of green, denoted as <span class="darkblue">best</span> and <span class="lightblue">second-best</span>, respectively.
+                  </caption>
+                  <thead>
+                    <tr>
+                      <th rowspan="3">Model</th>
+                      <!-- Part 1 Datasets -->
+                      <th colspan="11">Binary Binding Prediction</th>
+                    </tr>
+                    <tr>
+                      <th>AKAP1_HepG2</th>
+                      <th>BCLAF1_HepG2</th>
+                      <th>DDX24_K562</th>
+                      <th>DDX3X_HepG2</th>
+                      <th>DDX3X_K562</th>
+                      <th>FAM120A_K562</th>
+                      <th>G3BP1_HepG2</th>
+                      <th>GRWD1_HepG2</th>
+                      <th>IGF2BP1_K562</th>
+                      <th>LARP4_HepG2</th>
+                      <th>LIN28B_K562</th>
+                      <!-- Part 2 Datasets -->
+                      <th>PABPC4_K562</th>
+                      <th>PPIG_HepG2</th>
+                      <th>PUM2_K562</th>
+                      <th>RBM15_K562</th>
+                      <th>RPS3_HepG2</th>
+                      <th>SND1_HepG2</th>
+                      <th>UPF1_HepG2</th>
+                      <th>UPF1_K562</th>
+                      <th>UCHL5_K562</th>
+                      <th>YBX3_K562</th>
+                      <th>ZNF622_K562</th>
+                    </tr>
+                    <tr>
+                      <!-- All F1↑ -->
+                      <th>F1 ↑</th>
+                      <th>F1 ↑</th>
+                      <th>F1 ↑</th>
+                      <th>F1 ↑</th>
+                      <th>F1 ↑</th>
+                      <th>F1 ↑</th>
+                      <th>F1 ↑</th>
+                      <th>F1 ↑</th>
+                      <th>F1 ↑</th>
+                      <th>F1 ↑</th>
+                      <th>F1 ↑</th>
+                      <th>F1 ↑</th>
+                      <th>F1 ↑</th>
+                      <th>F1 ↑</th>
+                      <th>F1 ↑</th>
+                      <th>F1 ↑</th>
+                      <th>F1 ↑</th>
+                      <th>F1 ↑</th>
+                      <th>F1 ↑</th>
+                      <th>F1 ↑</th>
+                      <th>F1 ↑</th>
+                      <th>F1 ↑</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <!-- One-hot -->
+                    <tr>
+                      <td>One-hot</td>
+                      <td>0.753<sub>(0.007)</sub></td>
+                      <td>0.733<sub>(0.009)</sub></td>
+                      <td>0.638<sub>(0.005)</sub></td>
+                      <td>0.850<sub>(0.001)</sub></td>
+                      <td>0.808<sub>(0.002)</sub></td>
+                      <td>0.731<sub>(0.006)</sub></td>
+                      <td>0.608<sub>(0.016)</sub></td>
+                      <td>0.654<sub>(0.007)</sub></td>
+                      <td>0.698<sub>(0.001)</sub></td>
+                      <td>0.650<sub>(0.003)</sub></td>
+                      <td>0.603<sub>(0.006)</sub></td>
+                      <td>0.682<sub>(0.004)</sub></td>
+                      <td>0.694<sub>(0.012)</sub></td>
+                      <td class="lightblue">0.899<sub>(0.002)</sub></td>
+                      <td>0.646<sub>(0.004)</sub></td>
+                      <td>0.675<sub>(0.006)</sub></td>
+                      <td>0.670<sub>(0.005)</sub></td>
+                      <td>0.765<sub>(0.004)</sub></td>
+                      <td>0.717<sub>(0.003)</sub></td>
+                      <td>0.685<sub>(0.003)</sub></td>
+                      <td>0.634<sub>(0.002)</sub></td>
+                      <td>0.679<sub>(0.005)</sub></td>
+                    </tr>
+                    <!-- Dense -->
+                    <tr>
+                      <td>Dense</td>
+                      <td>0.757<sub>(0.002)</sub></td>
+                      <td>0.743<sub>(0.008)</sub></td>
+                      <td>0.651<sub>(0.009)</sub></td>
+                      <td>0.847<sub>(0.001)</sub></td>
+                      <td>0.808<sub>(0.002)</sub></td>
+                      <td>0.736<sub>(0.004)</sub></td>
+                      <td>0.623<sub>(0.006)</sub></td>
+                      <td>0.657<sub>(0.002)</sub></td>
+                      <td>0.695<sub>(0.004)</sub></td>
+                      <td>0.656<sub>(0.008)</sub></td>
+                      <td>0.593<sub>(0.008)</sub></td>
+                      <td>0.679<sub>(0.005)</sub></td>
+                      <td>0.698<sub>(0.005)</sub></td>
+                      <td class="darkblue">0.901<sub>(0.003)</sub></td>
+                      <td>0.651<sub>(0.006)</sub></td>
+                      <td>0.678<sub>(0.006)</sub></td>
+                      <td>0.657<sub>(0.007)</sub></td>
+                      <td>0.768<sub>(0.001)</sub></td>
+                      <td>0.721<sub>(0.003)</sub></td>
+                      <td>0.679<sub>(0.012)</sub></td>
+                      <td>0.626<sub>(0.005)</sub></td>
+                      <td>0.673<sub>(0.001)</sub></td>
+                    </tr>
+                    <!-- (+MLP) -->
+                    <tr>
+                      <td colspan="23"><strong>(+MLP)</strong></td>
+                    </tr>
+                    <!-- DNABERT2_mlp -->
+                    <tr>
+                      <td>DNABERT2_mlp</td>
+                      <td>0.745<sub>(0.005)</sub></td>
+                      <td>0.697<sub>(0.001)</sub></td>
+                      <td>0.599<sub>(0.010)</sub></td>
+                      <td>0.846<sub>(0.001)</sub></td>
+                      <td>0.807<sub>(0.004)</sub></td>
+                      <td>0.717<sub>(0.014)</sub></td>
+                      <td>0.584<sub>(0.007)</sub></td>
+                      <td>0.621<sub>(0.003)</sub></td>
+                      <td>0.691<sub>(0.002)</sub></td>
+                      <td>0.645<sub>(0.008)</sub></td>
+                      <td>0.584<sub>(0.007)</sub></td>
+                      <td>0.655<sub>(0.003)</sub></td>
+                      <td>0.669<sub>(0.003)</sub></td>
+                      <td>0.820<sub>(0.003)</sub></td>
+                      <td>0.658<sub>(0.006)</sub></td>
+                      <td>0.681<sub>(0.006)</sub></td>
+                      <td>0.629<sub>(0.007)</sub></td>
+                      <td>0.755<sub>(0.003)</sub></td>
+                      <td>0.711<sub>(0.002)</sub></td>
+                      <td>0.668<sub>(0.001)</sub></td>
+                      <td>0.591<sub>(0.002)</sub></td>
+                      <td>0.657<sub>(0.005)</sub></td>
+                    </tr>
+                    <!-- HyenaDNA_mlp -->
+                    <tr>
+                      <td>HyenaDNA_mlp</td>
+                      <td>0.722<sub>(0.007)</sub></td>
+                      <td>0.674<sub>(0.005)</sub></td>
+                      <td>0.536<sub>(0.026)</sub></td>
+                      <td>0.846<sub>(0.002)</sub></td>
+                      <td>0.793<sub>(0.007)</sub></td>
+                      <td>0.678<sub>(0.018)</sub></td>
+                      <td>0.527<sub>(0.020)</sub></td>
+                      <td>0.532<sub>(0.013)</sub></td>
+                      <td>0.695<sub>(0.002)</sub></td>
+                      <td>0.580<sub>(0.037)</sub></td>
+                      <td>0.412<sub>(0.008)</sub></td>
+                      <td>0.579<sub>(0.019)</sub></td>
+                      <td>0.659<sub>(0.002)</sub></td>
+                      <td>0.794<sub>(0.005)</sub></td>
+                      <td>0.631<sub>(0.008)</sub></td>
+                      <td>0.665<sub>(0.003)</sub></td>
+                      <td>0.629<sub>(0.010)</sub></td>
+                      <td>0.732<sub>(0.003)</sub></td>
+                      <td>0.684<sub>(0.013)</sub></td>
+                      <td>0.608<sub>(0.004)</sub></td>
+                      <td>0.509<sub>(0.023)</sub></td>
+                      <td>0.607<sub>(0.007)</sub></td>
+                    </tr>
+                    <!-- NT_mlp -->
+                    <tr>
+                      <td>NT_mlp</td>
+                      <td>0.744<sub>(0.002)</sub></td>
+                      <td>0.676<sub>(0.006)</sub></td>
+                      <td>0.572<sub>(0.008)</sub></td>
+                      <td>0.840<sub>(0.006)</sub></td>
+                      <td>0.796<sub>(0.001)</sub></td>
+                      <td>0.700<sub>(0.003)</sub></td>
+                      <td>0.586<sub>(0.001)</sub></td>
+                      <td>0.593<sub>(0.001)</sub></td>
+                      <td>0.680<sub>(0.006)</sub></td>
+                      <td>0.641<sub>(0.009)</sub></td>
+                      <td>0.467<sub>(0.053)</sub></td>
+                      <td>0.647<sub>(0.003)</sub></td>
+                      <td>0.649<sub>(0.011)</sub></td>
+                      <td>0.814<sub>(0.002)</sub></td>
+                      <td>0.638<sub>(0.004)</sub></td>
+                      <td>0.663<sub>(0.003)</sub></td>
+                      <td>0.599<sub>(0.019)</sub></td>
+                      <td>0.743<sub>(0.001)</sub></td>
+                      <td>0.688<sub>(0.008)</sub></td>
+                      <td>0.642<sub>(0.002)</sub></td>
+                      <td>0.635<sub>(0.001)</sub></td>
+                      <td>0.635<sub>(0.001)</sub></td>
+                    </tr>
+                    <!-- RNABERT_mlp -->
+                    <tr>
+                      <td>RNABERT_mlp</td>
+                      <td>0.548<sub>(0.009)</sub></td>
+                      <td>0.617<sub>(0.007)</sub></td>
+                      <td>0.456<sub>(0.012)</sub></td>
+                      <td>0.798<sub>(0.003)</sub></td>
+                      <td>0.689<sub>(0.007)</sub></td>
+                      <td>0.501<sub>(0.021)</sub></td>
+                      <td>0.436<sub>(0.004)</sub></td>
+                      <td>0.457<sub>(0.012)</sub></td>
+                      <td>0.615<sub>(0.007)</sub></td>
+                      <td>0.408<sub>(0.000)</sub></td>
+                      <td>0.406<sub>(0.000)</sub></td>
+                      <td>0.407<sub>(0.000)</sub></td>
+                      <td>0.567<sub>(0.007)</sub></td>
+                      <td>0.726<sub>(0.001)</sub></td>
+                      <td>0.550<sub>(0.011)</sub></td>
+                      <td>0.605<sub>(0.008)</sub></td>
+                      <td>0.522<sub>(0.004)</sub></td>
+                      <td>0.601<sub>(0.014)</sub></td>
+                      <td>0.480<sub>(0.017)</sub></td>
+                      <td>0.538<sub>(0.008)</sub></td>
+                      <td>0.415<sub>(0.000)</sub></td>
+                      <td>0.519<sub>(0.004)</sub></td>
+                    </tr>
+                    <!-- RNA-FM_mlp -->
+                    <tr>
+                      <td>RNA-FM_mlp</td>
+                      <td>0.776<sub>(0.000)</sub></td>
+                      <td>0.715<sub>(0.001)</sub></td>
+                      <td>0.628<sub>(0.002)</sub></td>
+                      <td>0.852<sub>(0.001)</sub></td>
+                      <td>0.811<sub>(0.004)</sub></td>
+                      <td>0.751<sub>(0.003)</sub></td>
+                      <td>0.638<sub>(0.001)</sub></td>
+                      <td>0.638<sub>(0.008)</sub></td>
+                      <td>0.734<sub>(0.006)</sub></td>
+                      <td>0.507<sub>(0.009)</sub></td>
+                      <td>0.602<sub>(0.015)</sub></td>
+                      <td>0.696<sub>(0.001)</sub></td>
+                      <td>0.684<sub>(0.003)</sub></td>
+                      <td>0.819<sub>(0.004)</sub></td>
+                      <td>0.674<sub>(0.002)</sub></td>
+                      <td>0.698<sub>(0.002)</sub></td>
+                      <td>0.669<sub>(0.002)</sub></td>
+                      <td>0.779<sub>(0.003)</sub></td>
+                      <td>0.740<sub>(0.003)</sub></td>
+                      <td>0.679<sub>(0.002)</sub></td>
+                      <td>0.590<sub>(0.018)</sub></td>
+                      <td>0.672<sub>(0.005)</sub></td>
+                    </tr>
+                    <!-- 3UTRBERT_mlp -->
+                    <tr>
+                      <td>3UTRBERT_mlp</td>
+                      <td>0.788<sub>(0.002)</sub></td>
+                      <td>0.720<sub>(0.002)</sub></td>
+                      <td>0.641<sub>(0.003)</sub></td>
+                      <td>0.854<sub>(0.001)</sub></td>
+                      <td>0.826<sub>(0.002)</sub></td>
+                      <td>0.755<sub>(0.001)</sub></td>
+                      <td>0.661<sub>(0.003)</sub></td>
+                      <td>0.650<sub>(0.002)</sub></td>
+                      <td>0.722<sub>(0.002)</sub></td>
+                      <td>0.696<sub>(0.001)</sub></td>
+                      <td>0.609<sub>(0.002)</sub></td>
+                      <td>0.695<sub>(0.005)</sub></td>
+                      <td>0.707<sub>(0.002)</sub></td>
+                      <td>0.853<sub>(0.003)</sub></td>
+                      <td>0.681<sub>(0.003)</sub></td>
+                      <td>0.685<sub>(0.001)</sub></td>
+                      <td>0.662<sub>(0.003)</sub></td>
+                      <td>0.783<sub>(0.002)</sub></td>
+                      <td>0.746<sub>(0.003)</sub></td>
+                      <td>0.702<sub>(0.006)</sub></td>
+                      <td>0.606<sub>(0.004)</sub></td>
+                      <td>0.690<sub>(0.003)</sub></td>
+                    </tr>
+                    <!-- SpliceBERT_mlp -->
+                    <tr>
+                      <td>SpliceBERT_mlp</td>
+                      <td>0.789<sub>(0.003)</sub></td>
+                      <td>0.742<sub>(0.002)</sub></td>
+                      <td>0.697<sub>(0.003)</sub></td>
+                      <td class="darkblue">0.863<sub>(0.001)</sub></td>
+                      <td class="lightblue">0.838<sub>(0.001)</sub></td>
+                      <td>0.747<sub>(0.004)</sub></td>
+                      <td>0.689<sub>(0.001)</sub></td>
+                      <td>0.692<sub>(0.004)</sub></td>
+                      <td class="lightblue">0.743<sub>(0.001)</sub></td>
+                      <td>0.709<sub>(0.004)</sub></td>
+                      <td class="darkblue">0.649<sub>(0.001)</sub></td>
+                      <td class="lightblue">0.724<sub>(0.003)</sub></td>
+                      <td>0.746<sub>(0.006)</sub></td>
+                      <td>0.842<sub>(0.004)</sub></td>
+                      <td>0.679<sub>(0.001)</sub></td>
+                      <td>0.708<sub>(0.005)</sub></td>
+                      <td>0.687<sub>(0.003)</sub></td>
+                      <td>0.787<sub>(0.003)</sub></td>
+                      <td>0.744<sub>(0.003)</sub></td>
+                      <td>0.742<sub>(0.002)</sub></td>
+                      <td>0.652<sub>(0.002)</sub></td>
+                      <td>0.727<sub>(0.001)</sub></td>
+                    </tr>
+                    <!-- (+CNN) -->
+                    <tr>
+                      <td colspan="23"><strong>(+CNN)</strong></td>
+                    </tr>
+                    <!-- DNABERT2_cnn -->
+                    <tr>
+                      <td>DNABERT2_cnn</td>
+                      <td>0.739<sub>(0.005)</sub></td>
+                      <td>0.697<sub>(0.001)</sub></td>
+                      <td>0.599<sub>(0.010)</sub></td>
+                      <td>0.845<sub>(0.004)</sub></td>
+                      <td>0.799<sub>(0.003)</sub></td>
+                      <td>0.724<sub>(0.002)</sub></td>
+                      <td>0.602<sub>(0.006)</sub></td>
+                      <td>0.614<sub>(0.008)</sub></td>
+                      <td>0.694<sub>(0.002)</sub></td>
+                      <td>0.638<sub>(0.010)</sub></td>
+                      <td>0.589<sub>(0.004)</sub></td>
+                      <td>0.670<sub>(0.010)</sub></td>
+                      <td>0.656<sub>(0.007)</sub></td>
+                      <td>0.843<sub>(0.006)</sub></td>
+                      <td>0.657<sub>(0.004)</sub></td>
+                      <td>0.677<sub>(0.005)</sub></td>
+                      <td>0.652<sub>(0.004)</sub></td>
+                      <td>0.750<sub>(0.009)</sub></td>
+                      <td>0.702<sub>(0.007)</sub></td>
+                      <td>0.651<sub>(0.002)</sub></td>
+                      <td>0.618<sub>(0.002)</sub></td>
+                      <td>0.644<sub>(0.006)</sub></td>
+                    </tr>
+                    <!-- HyenaDNA_cnn -->
+                    <tr>
+                      <td>HyenaDNA_cnn</td>
+                      <td>0.760<sub>(0.002)</sub></td>
+                      <td>0.733<sub>(0.007)</sub></td>
+                      <td>0.614<sub>(0.023)</sub></td>
+                      <td>0.851<sub>(0.006)</sub></td>
+                      <td>0.813<sub>(0.000)</sub></td>
+                      <td>0.755<sub>(0.007)</sub></td>
+                      <td>0.613<sub>(0.002)</sub></td>
+                      <td>0.626<sub>(0.011)</sub></td>
+                      <td>0.738<sub>(0.004)</sub></td>
+                      <td>0.643<sub>(0.006)</sub></td>
+                      <td>0.406<sub>(0.000)</sub></td>
+                      <td>0.670<sub>(0.009)</sub></td>
+                      <td>0.730<sub>(0.003)</sub></td>
+                      <td>0.883<sub>(0.005)</sub></td>
+                      <td>0.704<sub>(0.005)</sub></td>
+                      <td>0.702<sub>(0.008)</sub></td>
+                      <td>0.669<sub>(0.010)</sub></td>
+                      <td>0.767<sub>(0.002)</sub></td>
+                      <td>0.716<sub>(0.004)</sub></td>
+                      <td>0.657<sub>(0.007)</sub></td>
+                      <td>0.605<sub>(0.018)</sub></td>
+                      <td>0.684<sub>(0.007)</sub></td>
+                    </tr>
+                    <!-- NT_cnn -->
+                    <tr>
+                      <td>NT_cnn</td>
+                      <td>0.742<sub>(0.008)</sub></td>
+                      <td>0.689<sub>(0.002)</sub></td>
+                      <td>0.598<sub>(0.005)</sub></td>
+                      <td>0.842<sub>(0.004)</sub></td>
+                      <td>0.796<sub>(0.003)</sub></td>
+                      <td>0.712<sub>(0.005)</sub></td>
+                      <td>0.593<sub>(0.007)</sub></td>
+                      <td>0.608<sub>(0.004)</sub></td>
+                      <td>0.685<sub>(0.005)</sub></td>
+                      <td>0.637<sub>(0.003)</sub></td>
+                      <td>0.453<sub>(0.067)</sub></td>
+                      <td>0.641<sub>(0.006)</sub></td>
+                      <td>0.668<sub>(0.002)</sub></td>
+                      <td>0.835<sub>(0.006)</sub></td>
+                      <td>0.658<sub>(0.003)</sub></td>
+                      <td>0.670<sub>(0.014)</sub></td>
+                      <td>0.625<sub>(0.007)</sub></td>
+                      <td>0.752<sub>(0.001)</sub></td>
+                      <td>0.695<sub>(0.007)</sub></td>
+                      <td>0.647<sub>(0.002)</sub></td>
+                      <td>0.646<sub>(0.002)</sub></td>
+                      <td>0.646<sub>(0.002)</sub></td>
+                    </tr>
+                    <!-- RNABERT_cnn -->
+                    <tr>
+                      <td>RNABERT_cnn</td>
+                      <td>0.704<sub>(0.002)</sub></td>
+                      <td>0.670<sub>(0.002)</sub></td>
+                      <td>0.527<sub>(0.002)</sub></td>
+                      <td>0.835<sub>(0.002)</sub></td>
+                      <td>0.792<sub>(0.002)</sub></td>
+                      <td>0.685<sub>(0.004)</sub></td>
+                      <td>0.515<sub>(0.004)</sub></td>
+                      <td>0.679<sub>(0.003)</sub></td>
+                      <td>0.598<sub>(0.006)</sub></td>
+                      <td>0.507<sub>(0.009)</sub></td>
+                      <td>0.613<sub>(0.003)</sub></td>
+                      <td>0.631<sub>(0.010)</sub></td>
+                      <td>0.607<sub>(0.014)</sub></td>
+                      <td>0.815<sub>(0.002)</sub></td>
+                      <td>0.615<sub>(0.004)</sub></td>
+                      <td>0.642<sub>(0.007)</sub></td>
+                      <td>0.567<sub>(0.005)</sub></td>
+                      <td>0.601<sub>(0.014)</sub></td>
+                      <td>0.480<sub>(0.017)</sub></td>
+                      <td>0.538<sub>(0.008)</sub></td>
+                      <td>0.415<sub>(0.000)</sub></td>
+                      <td>0.519<sub>(0.004)</sub></td>
+                    </tr>
+                    <!-- RNA-FM_cnn -->
+                    <tr>
+                      <td>RNA-FM_cnn</td>
+                      <td>0.788<sub>(0.002)</sub></td>
+                      <td>0.740<sub>(0.002)</sub></td>
+                      <td>0.658<sub>(0.001)</sub></td>
+                      <td class="lightblue">0.859<sub>(0.003)</sub></td>
+                      <td>0.812<sub>(0.001)</sub></td>
+                      <td>0.761<sub>(0.007)</sub></td>
+                      <td>0.654<sub>(0.003)</sub></td>
+                      <td>0.662<sub>(0.001)</sub></td>
+                      <td class="lightblue">0.743<sub>(0.002)</sub></td>
+                      <td>0.662<sub>(0.001)</sub></td>
+                      <td>0.619<sub>(0.003)</sub></td>
+                      <td>0.702<sub>(0.002)</sub></td>
+                      <td>0.722<sub>(0.003)</sub></td>
+                      <td>0.875<sub>(0.006)</sub></td>
+                      <td>0.707<sub>(0.004)</sub></td>
+                      <td>0.709<sub>(0.002)</sub></td>
+                      <td>0.689<sub>(0.006)</sub></td>
+                      <td>0.788<sub>(0.002)</sub></td>
+                      <td class="lightblue">0.755<sub>(0.002)</sub></td>
+                      <td>0.693<sub>(0.005)</sub></td>
+                      <td>0.642<sub>(0.001)</sub></td>
+                      <td>0.697<sub>(0.002)</sub></td>
+                    </tr>
+                    <!-- 3UTRBERT_mlp -->
+                    <tr>
+                      <td>3UTRBERT_mlp</td>
+                      <td>0.788<sub>(0.002)</sub></td>
+                      <td>0.720<sub>(0.002)</sub></td>
+                      <td>0.641<sub>(0.003)</sub></td>
+                      <td>0.854<sub>(0.001)</sub></td>
+                      <td>0.826<sub>(0.002)</sub></td>
+                      <td>0.755<sub>(0.001)</sub></td>
+                      <td>0.661<sub>(0.003)</sub></td>
+                      <td>0.650<sub>(0.002)</sub></td>
+                      <td>0.722<sub>(0.002)</sub></td>
+                      <td>0.696<sub>(0.001)</sub></td>
+                      <td>0.609<sub>(0.002)</sub></td>
+                      <td>0.695<sub>(0.005)</sub></td>
+                      <td>0.707<sub>(0.002)</sub></td>
+                      <td>0.853<sub>(0.003)</sub></td>
+                      <td>0.681<sub>(0.003)</sub></td>
+                      <td>0.685<sub>(0.001)</sub></td>
+                      <td>0.662<sub>(0.003)</sub></td>
+                      <td>0.783<sub>(0.002)</sub></td>
+                      <td>0.746<sub>(0.003)</sub></td>
+                      <td>0.702<sub>(0.006)</sub></td>
+                      <td>0.606<sub>(0.004)</sub></td>
+                      <td>0.690<sub>(0.003)</sub></td>
+                    </tr>
+                    <!-- SpliceBERT_mlp -->
+                    <tr>
+                      <td>SpliceBERT_mlp</td>
+                      <td>0.789<sub>(0.003)</sub></td>
+                      <td>0.742<sub>(0.002)</sub></td>
+                      <td>0.697<sub>(0.003)</sub></td>
+                      <td class="darkblue">0.863<sub>(0.001)</sub></td>
+                      <td class="lightblue">0.838<sub>(0.001)</sub></td>
+                      <td>0.747<sub>(0.004)</sub></td>
+                      <td>0.689<sub>(0.001)</sub></td>
+                      <td>0.692<sub>(0.004)</sub></td>
+                      <td class="lightblue">0.743<sub>(0.001)</sub></td>
+                      <td>0.709<sub>(0.004)</sub></td>
+                      <td class="darkblue">0.649<sub>(0.001)</sub></td>
+                      <td class="lightblue">0.724<sub>(0.003)</sub></td>
+                      <td>0.746<sub>(0.006)</sub></td>
+                      <td>0.842<sub>(0.004)</sub></td>
+                      <td>0.679<sub>(0.001)</sub></td>
+                      <td>0.708<sub>(0.005)</sub></td>
+                      <td>0.687<sub>(0.003)</sub></td>
+                      <td>0.787<sub>(0.003)</sub></td>
+                      <td>0.744<sub>(0.003)</sub></td>
+                      <td>0.742<sub>(0.002)</sub></td>
+                      <td>0.652<sub>(0.002)</sub></td>
+                      <td>0.727<sub>(0.001)</sub></td>
+                    </tr>
+                    <!-- (+CNN) -->
+                    <tr>
+                      <td colspan="23"><strong>(+CNN)</strong></td>
+                    </tr>
+                    <!-- DNABERT2_cnn -->
+                    <tr>
+                      <td>DNABERT2_cnn</td>
+                      <td>0.739<sub>(0.005)</sub></td>
+                      <td>0.697<sub>(0.001)</sub></td>
+                      <td>0.599<sub>(0.010)</sub></td>
+                      <td>0.845<sub>(0.004)</sub></td>
+                      <td>0.799<sub>(0.003)</sub></td>
+                      <td>0.724<sub>(0.002)</sub></td>
+                      <td>0.602<sub>(0.006)</sub></td>
+                      <td>0.614<sub>(0.008)</sub></td>
+                      <td>0.694<sub>(0.002)</sub></td>
+                      <td>0.638<sub>(0.010)</sub></td>
+                      <td>0.589<sub>(0.004)</sub></td>
+                      <td>0.670<sub>(0.010)</sub></td>
+                      <td>0.656<sub>(0.007)</sub></td>
+                      <td>0.843<sub>(0.006)</sub></td>
+                      <td>0.657<sub>(0.004)</sub></td>
+                      <td>0.677<sub>(0.005)</sub></td>
+                      <td>0.652<sub>(0.004)</sub></td>
+                      <td>0.750<sub>(0.009)</sub></td>
+                      <td>0.702<sub>(0.007)</sub></td>
+                      <td>0.651<sub>(0.002)</sub></td>
+                      <td>0.618<sub>(0.002)</sub></td>
+                      <td>0.644<sub>(0.006)</sub></td>
+                    </tr>
+                    <!-- HyenaDNA_cnn -->
+                    <tr>
+                      <td>HyenaDNA_cnn</td>
+                      <td>0.760<sub>(0.002)</sub></td>
+                      <td>0.733<sub>(0.007)</sub></td>
+                      <td>0.614<sub>(0.023)</sub></td>
+                      <td>0.851<sub>(0.006)</sub></td>
+                      <td>0.813<sub>(0.000)</sub></td>
+                      <td>0.755<sub>(0.007)</sub></td>
+                      <td>0.613<sub>(0.002)</sub></td>
+                      <td>0.626<sub>(0.011)</sub></td>
+                      <td>0.738<sub>(0.004)</sub></td>
+                      <td>0.643<sub>(0.006)</sub></td>
+                      <td>0.406<sub>(0.000)</sub></td>
+                      <td>0.670<sub>(0.009)</sub></td>
+                      <td>0.730<sub>(0.003)</sub></td>
+                      <td>0.883<sub>(0.005)</sub></td>
+                      <td>0.704<sub>(0.005)</sub></td>
+                      <td>0.702<sub>(0.008)</sub></td>
+                      <td>0.669<sub>(0.010)</sub></td>
+                      <td>0.767<sub>(0.002)</sub></td>
+                      <td>0.716<sub>(0.004)</sub></td>
+                      <td>0.657<sub>(0.007)</sub></td>
+                      <td>0.605<sub>(0.018)</sub></td>
+                      <td>0.684<sub>(0.007)</sub></td>
+                    </tr>
+                    <!-- NT_cnn -->
+                    <tr>
+                      <td>NT_cnn</td>
+                      <td>0.742<sub>(0.008)</sub></td>
+                      <td>0.689<sub>(0.002)</sub></td>
+                      <td>0.598<sub>(0.005)</sub></td>
+                      <td>0.842<sub>(0.004)</sub></td>
+                      <td>0.796<sub>(0.003)</sub></td>
+                      <td>0.712<sub>(0.005)</sub></td>
+                      <td>0.593<sub>(0.007)</sub></td>
+                      <td>0.608<sub>(0.004)</sub></td>
+                      <td>0.685<sub>(0.005)</sub></td>
+                      <td>0.637<sub>(0.003)</sub></td>
+                      <td>0.453<sub>(0.067)</sub></td>
+                      <td>0.641<sub>(0.006)</sub></td>
+                      <td>0.668<sub>(0.002)</sub></td>
+                      <td>0.835<sub>(0.006)</sub></td>
+                      <td>0.658<sub>(0.003)</sub></td>
+                      <td>0.670<sub>(0.014)</sub></td>
+                      <td>0.625<sub>(0.007)</sub></td>
+                      <td>0.752<sub>(0.001)</sub></td>
+                      <td>0.695<sub>(0.007)</sub></td>
+                      <td>0.647<sub>(0.002)</sub></td>
+                      <td>0.646<sub>(0.002)</sub></td>
+                      <td>0.646<sub>(0.002)</sub></td>
+                    </tr>
+                    <!-- RNABERT_cnn -->
+                    <tr>
+                      <td>RNABERT_cnn</td>
+                      <td>0.631<sub>(0.010)</sub></td>
+                      <td>0.607<sub>(0.014)</sub></td>
+                      <td>0.815<sub>(0.002)</sub></td>
+                      <td>0.615<sub>(0.004)</sub></td>
+                      <td>0.642<sub>(0.007)</sub></td>
+                      <td>0.567<sub>(0.005)</sub></td>
+                      <td>0.601<sub>(0.014)</sub></td>
+                      <td>0.480<sub>(0.017)</sub></td>
+                      <td>0.538<sub>(0.008)</sub></td>
+                      <td>0.415<sub>(0.000)</sub></td>
+                      <td>0.613<sub>(0.003)</sub></td>
+                      <td>0.631<sub>(0.010)</sub></td>
+                      <td>0.607<sub>(0.014)</sub></td>
+                      <td>0.815<sub>(0.002)</sub></td>
+                      <td>0.615<sub>(0.004)</sub></td>
+                      <td>0.642<sub>(0.007)</sub></td>
+                      <td>0.567<sub>(0.005)</sub></td>
+                      <td>0.601<sub>(0.014)</sub></td>
+                      <td>0.480<sub>(0.017)</sub></td>
+                      <td>0.538<sub>(0.008)</sub></td>
+                      <td>0.415<sub>(0.000)</sub></td>
+                      <td>0.519<sub>(0.004)</sub></td>
+                    </tr>
+                    <!-- RNA-FM_cnn -->
+                    <tr>
+                      <td>RNA-FM_cnn</td>
+                      <td>0.702<sub>(0.002)</sub></td>
+                      <td>0.722<sub>(0.003)</sub></td>
+                      <td>0.875<sub>(0.006)</sub></td>
+                      <td>0.707<sub>(0.004)</sub></td>
+                      <td>0.709<sub>(0.002)</sub></td>
+                      <td>0.689<sub>(0.006)</sub></td>
+                      <td>0.788<sub>(0.002)</sub></td>
+                      <td class="lightblue">0.755<sub>(0.002)</sub></td>
+                      <td>0.693<sub>(0.005)</sub></td>
+                      <td>0.642<sub>(0.001)</sub></td>
+                      <td>0.697<sub>(0.002)</sub></td>
+                      <td>0.702<sub>(0.002)</sub></td>
+                      <td>0.722<sub>(0.003)</sub></td>
+                      <td>0.875<sub>(0.006)</sub></td>
+                      <td>0.707<sub>(0.004)</sub></td>
+                      <td>0.709<sub>(0.002)</sub></td>
+                      <td>0.689<sub>(0.006)</sub></td>
+                      <td>0.788<sub>(0.002)</sub></td>
+                      <td class="lightblue">0.755<sub>(0.002)</sub></td>
+                      <td>0.693<sub>(0.005)</sub></td>
+                      <td>0.642<sub>(0.001)</sub></td>
+                      <td>0.697<sub>(0.002)</sub></td>
+                    </tr>
+                    <!-- 3UTRBERT_cnn -->
+                    <tr>
+                      <td>3UTRBERT_cnn</td>
+                      <td>0.708<sub>(0.011)</sub></td>
+                      <td>0.734<sub>(0.000)</sub></td>
+                      <td>0.890<sub>(0.004)</sub></td>
+                      <td>0.688<sub>(0.010)</sub></td>
+                      <td>0.698<sub>(0.007)</sub></td>
+                      <td>0.678<sub>(0.006)</sub></td>
+                      <td class="darkblue">0.791<sub>(0.001)</sub></td>
+                      <td>0.743<sub>(0.005)</sub></td>
+                      <td>0.716<sub>(0.003)</sub></td>
+                      <td>0.637<sub>(0.005)</sub></td>
+                      <td>0.704<sub>(0.008)</sub></td>
+                      <td>0.708<sub>(0.011)</sub></td>
+                      <td>0.734<sub>(0.000)</sub></td>
+                      <td>0.890<sub>(0.004)</sub></td>
+                      <td>0.688<sub>(0.010)</sub></td>
+                      <td>0.698<sub>(0.007)</sub></td>
+                      <td>0.678<sub>(0.006)</sub></td>
+                      <td class="darkblue">0.791<sub>(0.001)</sub></td>
+                      <td>0.743<sub>(0.005)</sub></td>
+                      <td>0.716<sub>(0.003)</sub></td>
+                      <td>0.637<sub>(0.005)</sub></td>
+                      <td>0.704<sub>(0.008)</sub></td>
+                    </tr>
+                    <!-- SpliceBERT_cnn -->
+                    <tr>
+                      <td>SpliceBERT_cnn</td>
+                      <td class="darkblue">0.729<sub>(0.000)</sub></td>
+                      <td class="lightblue">0.769<sub>(0.004)</sub></td>
+                      <td>0.872<sub>(0.006)</sub></td>
+                      <td class="lightblue">0.708<sub>(0.002)</sub></td>
+                      <td class="darkblue">0.717<sub>(0.003)</sub></td>
+                      <td class="darkblue">0.713<sub>(0.002)</sub></td>
+                      <td class="lightblue">0.789<sub>(0.002)</sub></td>
+                      <td class="darkblue">0.759<sub>(0.003)</sub></td>
+                      <td class="lightblue">0.748<sub>(0.001)</sub></td>
+                      <td class="darkblue">0.676<sub>(0.002)</sub></td>
+                      <td class="lightblue">0.743<sub>(0.006)</sub></td>
+                      <td>0.716<sub>(0.005)</sub></td>
+                      <td class="darkblue">0.789<sub>(0.005)</sub></td>
+                      <td>0.895<sub>(0.002)</sub></td>
+                      <td class="darkblue">0.713<sub>(0.002)</sub></td>
+                      <td class="lightblue">0.710<sub>(0.008)</sub></td>
+                      <td class="lightblue">0.705<sub>(0.001)</sub></td>
+                      <td>0.788<sub>(0.002)</sub></td>
+                      <td>0.746<sub>(0.006)</sub></td>
+                      <td class="darkblue">0.750<sub>(0.004)</sub></td>
+                      <td class="lightblue">0.675<sub>(0.007)</sub></td>
+                      <td class="darkblue">0.749<sub>(0.006)</sub></td>
+                    </tr>
+                    <!-- (+ResNet) -->
+                    <tr>
+                      <td colspan="23"><strong>(+ResNet)</strong></td>
+                    </tr>
+                    <!-- DNABERT2_resnet -->
+                    <tr>
+                      <td>DNABERT2_resnet</td>
+                      <td>0.726<sub>(0.008)</sub></td>
+                      <td>0.697<sub>(0.007)</sub></td>
+                      <td>0.577<sub>(0.001)</sub></td>
+                      <td>0.843<sub>(0.001)</sub></td>
+                      <td>0.795<sub>(0.001)</sub></td>
+                      <td>0.701<sub>(0.021)</sub></td>
+                      <td>0.572<sub>(0.005)</sub></td>
+                      <td>0.599<sub>(0.006)</sub></td>
+                      <td>0.678<sub>(0.008)</sub></td>
+                      <td>0.639<sub>(0.019)</sub></td>
+                      <td>0.561<sub>(0.008)</sub></td>
+                      <td>0.628<sub>(0.004)</sub></td>
+                      <td>0.659<sub>(0.002)</sub></td>
+                      <td>0.823<sub>(0.009)</sub></td>
+                      <td>0.653<sub>(0.005)</sub></td>
+                      <td>0.664<sub>(0.009)</sub></td>
+                      <td>0.620<sub>(0.004)</sub></td>
+                      <td>0.749<sub>(0.004)</sub></td>
+                      <td>0.684<sub>(0.007)</sub></td>
+                      <td>0.626<sub>(0.009)</sub></td>
+                      <td>0.594<sub>(0.005)</sub></td>
+                      <td>0.634<sub>(0.012)</sub></td>
+                    </tr>
+                    <!-- HyenaDNA_resnet -->
+                    <tr>
+                      <td>HyenaDNA_resnet</td>
+                      <td>0.771<sub>(0.003)</sub></td>
+                      <td>0.753<sub>(0.001)</sub></td>
+                      <td>0.683<sub>(0.004)</sub></td>
+                      <td>0.853<sub>(0.001)</sub></td>
+                      <td>0.810<sub>(0.001)</sub></td>
+                      <td>0.757<sub>(0.007)</sub></td>
+                      <td>0.633<sub>(0.005)</sub></td>
+                      <td>0.679<sub>(0.005)</sub></td>
+                      <td>0.732<sub>(0.004)</sub></td>
+                      <td>0.658<sub>(0.004)</sub></td>
+                      <td>0.607<sub>(0.009)</sub></td>
+                      <td>0.686<sub>(0.003)</sub></td>
+                      <td>0.739<sub>(0.005)</sub></td>
+                      <td>0.896<sub>(0.004)</sub></td>
+                      <td>0.720<sub>(0.004)</sub></td>
+                      <td>0.699<sub>(0.004)</sub></td>
+                      <td>0.684<sub>(0.007)</sub></td>
+                      <td>0.778<sub>(0.003)</sub></td>
+                      <td>0.737<sub>(0.003)</sub></td>
+                      <td>0.704<sub>(0.001)</sub></td>
+                      <td>0.639<sub>(0.002)</sub></td>
+                      <td>0.710<sub>(0.008)</sub></td>
+                    </tr>
+                    <!-- NT_resnet -->
+                    <tr>
+                      <td>NT_resnet</td>
+                      <td>0.738<sub>(0.006)</sub></td>
+                      <td>0.708<sub>(0.003)</sub></td>
+                      <td>0.601<sub>(0.014)</sub></td>
+                      <td>0.841<sub>(0.003)</sub></td>
+                      <td>0.790<sub>(0.016)</sub></td>
+                      <td>0.701<sub>(0.007)</sub></td>
+                      <td>0.601<sub>(0.008)</sub></td>
+                      <td>0.623<sub>(0.003)</sub></td>
+                      <td>0.688<sub>(0.015)</sub></td>
+                      <td>0.624<sub>(0.013)</sub></td>
+                      <td>0.561<sub>(0.003)</sub></td>
+                      <td>0.644<sub>(0.002)</sub></td>
+                      <td>0.672<sub>(0.009)</sub></td>
+                      <td>0.829<sub>(0.004)</sub></td>
+                      <td>0.673<sub>(0.012)</sub></td>
+                      <td>0.678<sub>(0.006)</sub></td>
+                      <td>0.644<sub>(0.003)</sub></td>
+                      <td>0.742<sub>(0.003)</sub></td>
+                      <td>0.700<sub>(0.015)</sub></td>
+                      <td>0.655<sub>(0.006)</sub></td>
+                      <td>0.634<sub>(0.002)</sub></td>
+                      <td>0.634<sub>(0.002)</sub></td>
+                    </tr>
+                    <!-- RNABERT_resnet -->
+                    <tr>
+                      <td>RNABERT_resnet</td>
+                      <td>0.732<sub>(0.010)</sub></td>
+                      <td>0.721<sub>(0.002)</sub></td>
+                      <td>0.571<sub>(0.016)</sub></td>
+                      <td>0.838<sub>(0.008)</sub></td>
+                      <td>0.789<sub>(0.008)</sub></td>
+                      <td>0.709<sub>(0.010)</sub></td>
+                      <td>0.559<sub>(0.008)</sub></td>
+                      <td>0.628<sub>(0.004)</sub></td>
+                      <td>0.689<sub>(0.003)</sub></td>
+                      <td>0.624<sub>(0.015)</sub></td>
+                      <td>0.528<sub>(0.005)</sub></td>
+                      <td>0.647<sub>(0.021)</sub></td>
+                      <td>0.684<sub>(0.003)</sub></td>
+                      <td>0.878<sub>(0.005)</sub></td>
+                      <td>0.624<sub>(0.009)</sub></td>
+                      <td>0.657<sub>(0.006)</sub></td>
+                      <td>0.607<sub>(0.006)</sub></td>
+                      <td>0.755<sub>(0.005)</sub></td>
+                      <td>0.708<sub>(0.002)</sub></td>
+                      <td>0.658<sub>(0.008)</sub></td>
+                      <td>0.606<sub>(0.005)</sub></td>
+                      <td>0.643<sub>(0.010)</sub></td>
+                    </tr>
+                    <!-- RNA-FM_resnet -->
+                    <tr>
+                      <td>RNA-FM_resnet</td>
+                      <td>0.779<sub>(0.006)</sub></td>
+                      <td>0.746<sub>(0.001)</sub></td>
+                      <td>0.644<sub>(0.005)</sub></td>
+                      <td>0.854<sub>(0.004)</sub></td>
+                      <td>0.811<sub>(0.004)</sub></td>
+                      <td>0.752<sub>(0.009)</sub></td>
+                      <td>0.639<sub>(0.005)</sub></td>
+                      <td>0.665<sub>(0.008)</sub></td>
+                      <td>0.732<sub>(0.005)</sub></td>
+                      <td>0.656<sub>(0.002)</sub></td>
+                      <td>0.609<sub>(0.012)</sub></td>
+                      <td>0.686<sub>(0.002)</sub></td>
+                      <td>0.720<sub>(0.005)</sub></td>
+                      <td>0.886<sub>(0.005)</sub></td>
+                      <td>0.706<sub>(0.006)</sub></td>
+                      <td>0.704<sub>(0.012)</sub></td>
+                      <td>0.676<sub>(0.005)</sub></td>
+                      <td>0.780<sub>(0.003)</sub></td>
+                      <td>0.744<sub>(0.002)</sub></td>
+                      <td>0.691<sub>(0.004)</sub></td>
+                      <td>0.631<sub>(0.001)</sub></td>
+                      <td>0.686<sub>(0.002)</sub></td>
+                    </tr>
+                    <!-- 3UTRBERT_resnet -->
+                    <tr>
+                      <td>3UTRBERT_resnet</td>
+                      <td class="lightblue">0.792<sub>(0.005)</sub></td>
+                      <td>0.751<sub>(0.001)</sub></td>
+                      <td>0.660<sub>(0.004)</sub></td>
+                      <td>0.853<sub>(0.000)</sub></td>
+                      <td>0.824<sub>(0.002)</sub></td>
+                      <td>0.748<sub>(0.009)</sub></td>
+                      <td>0.656<sub>(0.015)</sub></td>
+                      <td>0.676<sub>(0.002)</sub></td>
+                      <td>0.683<sub>(0.007)</sub></td>
+                      <td>0.618<sub>(0.004)</sub></td>
+                      <td>0.498<sub>(0.213)</sub></td>
+                      <td>0.792<sub>(0.005)</sub></td>
+                      <td>0.751<sub>(0.001)</sub></td>
+                      <td>0.660<sub>(0.004)</sub></td>
+                      <td>0.853<sub>(0.000)</sub></td>
+                      <td>0.824<sub>(0.002)</sub></td>
+                      <td>0.748<sub>(0.009)</sub></td>
+                      <td>0.656<sub>(0.015)</sub></td>
+                      <td>0.676<sub>(0.002)</sub></td>
+                      <td>0.683<sub>(0.007)</sub></td>
+                      <td>0.618<sub>(0.004)</sub></td>
+                      <td>0.498<sub>(0.213)</sub></td>
+                    </tr>
+                    <!-- SpliceBERT_resnet -->
+                    <tr>
+                      <td>SpliceBERT_resnet</td>
+                      <td>0.716<sub>(0.005)</sub></td>
+                      <td class="darkblue">0.789<sub>(0.005)</sub></td>
+                      <td>0.895<sub>(0.002)</sub></td>
+                      <td class="darkblue">0.713<sub>(0.002)</sub></td>
+                      <td class="lightblue">0.710<sub>(0.008)</sub></td>
+                      <td class="lightblue">0.705<sub>(0.001)</sub></td>
+                      <td>0.788<sub>(0.002)</sub></td>
+                      <td>0.746<sub>(0.006)</sub></td>
+                      <td class="darkblue">0.750<sub>(0.004)</sub></td>
+                      <td class="lightblue">0.675<sub>(0.007)</sub></td>
+                      <td class="darkblue">0.749<sub>(0.006)</sub></td>
+                      <td>0.716<sub>(0.005)</sub></td>
+                      <td class="darkblue">0.789<sub>(0.005)</sub></td>
+                      <td>0.895<sub>(0.002)</sub></td>
+                      <td class="darkblue">0.713<sub>(0.002)</sub></td>
+                      <td class="lightblue">0.710<sub>(0.008)</sub></td>
+                      <td class="lightblue">0.705<sub>(0.001)</sub></td>
+                      <td>0.788<sub>(0.002)</sub></td>
+                      <td>0.746<sub>(0.006)</sub></td>
+                      <td class="darkblue">0.750<sub>(0.004)</sub></td>
+                      <td class="lightblue">0.675<sub>(0.007)</sub></td>
+                      <td class="darkblue">0.749<sub>(0.006)</sub></td>
+                    </tr>
+                  </tbody>
+                </table>
+                </div> <!-- End of Table Container -->
+              </div> <!-- End of interaction-detailed-results -->
+            </div> <!-- End of Detailed Binary Binding Interaction Results -->
           </div>
 
-        </div>
+        <!-- Function-related Tasks Section -->
+          <div class="content">
+            <h3 class="title is-4">Function-related Tasks</h3>
+            <p>Benchmark results on pre-mRNA tasks.</p>
+
+            <!-- 可水平和垂直滚动的表格容器 -->
+            <div class="table-container" id="function-table-container" style="overflow: auto; max-height: 500px; position: relative;">
+              <table class="table is-striped is-bordered is-hoverable is-fullwidth">
+                <caption>Benchmark results on pre-mRNA tasks.</caption>
+                <thead>
+                  <tr>
+                    <th rowspan="3">Model</th>
+                    <th colspan="6">Splicing Site</th>
+                    <th colspan="3">Splicing Event</th>
+                    <th colspan="3">PAS</th>
+                  </tr>
+                  <tr>
+                    <th>Donor_hg</th>
+                    <th>Donor_ah</th>
+                    <th>Donor_os</th>
+                    <th>Acceptor_hg</th>
+                    <th>Acceptor_ah</th>
+                    <th>Acceptor_os</th>
+                    <th>hg</th>
+                    <th>ah</th>
+                    <th>os</th>
+                    <th>hg</th>
+                    <th>mm_bl</th>
+                    <th>mm_sp</th>
+                  </tr>
+                  <tr>
+                    <th>ACC↑</th>
+                    <th>ACC↑</th>
+                    <th>ACC↑</th>
+                    <th>ACC↑</th>
+                    <th>ACC↑</th>
+                    <th>ACC↑</th>
+                    <th>F1↑</th>
+                    <th>F1↑</th>
+                    <th>F1↑</th>
+                    <th>ACC↑</th>
+                    <th>ACC↑</th>
+                    <th>ACC↑</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <!-- 示例行（请根据实际数据添加更多行） -->
+                  <tr>
+                    <td>One-hot</td>
+                    <td>0.904<sub>(0.001)</sub></td>
+                    <td>0.751<sub>(0.007)</sub></td>
+                    <td>0.734<sub>(0.015)</sub></td>
+                    <td>0.902<sub>(0.002)</sub></td>
+                    <td>0.729<sub>(0.009)</sub></td>
+                    <td>0.720<sub>(0.014)</sub></td>
+                    <td>0.608<sub>(0.008)</sub></td>
+                    <td>0.331<sub>(0.024)</sub></td>
+                    <td>0.375<sub>(0.026)</sub></td>
+                    <td>0.751<sub>(0.003)</sub></td>
+                    <td>0.621<sub>(0.011)</sub></td>
+                    <td>0.621<sub>(0.012)</sub></td>
+                  </tr>
+                  <tr>
+                    <td>Dense</td>
+                    <td>0.895<sub>(0.002)</sub></td>
+                    <td>0.745<sub>(0.004)</sub></td>
+                    <td>0.726<sub>(0.004)</sub></td>
+                    <td>0.897<sub>(0.002)</sub></td>
+                    <td>0.733<sub>(0.006)</sub></td>
+                    <td>0.738<sub>(0.010)</sub></td>
+                    <td>0.615<sub>(0.011)</sub></td>
+                    <td>0.351<sub>(0.024)</sub></td>
+                    <td>0.402<sub>(0.018)</sub></td>
+                    <td>0.743<sub>(0.001)</sub></td>
+                    <td>0.618<sub>(0.011)</sub></td>
+                    <td>0.618<sub>(0.011)</sub></td>
+                  </tr>
+                  <tr>
+                    <td colspan="13"><strong>(+MLP)</strong></td>
+                  </tr>
+                  <tr>
+                    <td>DNABERT2_mlp</td>
+                    <td>0.812<sub>(0.001)</sub></td>
+                    <td>0.666<sub>(0.007)</sub></td>
+                    <td>0.635<sub>(0.003)</sub></td>
+                    <td>0.803<sub>(0.001)</sub></td>
+                    <td>0.684<sub>(0.012)</sub></td>
+                    <td>0.676<sub>(0.017)</sub></td>
+                    <td>0.602<sub>(0.005)</sub></td>
+                    <td>0.324<sub>(0.013)</sub></td>
+                    <td>0.391<sub>(0.013)</sub></td>
+                    <td>0.745<sub>(0.001)</sub></td>
+                    <td>0.603<sub>(0.003)</sub></td>
+                    <td>0.608<sub>(0.003)</sub></td>
+                  </tr>
+                  <tr>
+                    <td>HyenaDNA_mlp</td>
+                    <td>0.783<sub>(0.002)</sub></td>
+                    <td>0.649<sub>(0.003)</sub></td>
+                    <td>0.616<sub>(0.007)</sub></td>
+                    <td>0.801<sub>(0.002)</sub></td>
+                    <td>0.680<sub>(0.005)</sub></td>
+                    <td>0.646<sub>(0.008)</sub></td>
+                    <td>0.556<sub>(0.004)</sub></td>
+                    <td>0.321<sub>(0.014)</sub></td>
+                    <td>0.410<sub>(0.011)</sub></td>
+                    <td>0.737<sub>(0.003)</sub></td>
+                    <td>0.632<sub>(0.007)</sub></td>
+                    <td>0.635<sub>(0.006)</sub></td>
+                  </tr>
+                  <tr>
+                    <td>NT_mlp</td>
+                    <td>0.782<sub>(0.002)</sub></td>
+                    <td>0.662<sub>(0.001)</sub></td>
+                    <td>0.606<sub>(0.001)</sub></td>
+                    <td>0.784<sub>(0.000)</sub></td>
+                    <td>0.671<sub>(0.001)</sub></td>
+                    <td>0.634<sub>(0.004)</sub></td>
+                    <td>0.556<sub>(0.004)</sub></td>
+                    <td>0.318<sub>(0.012)</sub></td>
+                    <td>0.392<sub>(0.007)</sub></td>
+                    <td>0.737<sub>(0.001)</sub></td>
+                    <td>0.617<sub>(0.008)</sub></td>
+                    <td>0.622<sub>(0.007)</sub></td>
+                  </tr>
+                  <tr>
+                    <td>RNABERT_mlp</td>
+                    <td>0.677<sub>(0.002)</sub></td>
+                    <td>0.604<sub>(0.003)</sub></td>
+                    <td>0.578<sub>(0.002)</sub></td>
+                    <td>0.667<sub>(0.001)</sub></td>
+                    <td>0.614<sub>(0.007)</sub></td>
+                    <td>0.567<sub>(0.007)</sub></td>
+                    <td>0.421<sub>(0.008)</sub></td>
+                    <td>0.245<sub>(0.011)</sub></td>
+                    <td>0.334<sub>(0.007)</sub></td>
+                    <td>0.699<sub>(0.002)</sub></td>
+                    <td>0.616<sub>(0.002)</sub></td>
+                    <td>0.622<sub>(0.002)</sub></td>
+                  </tr>
+                  <tr>
+                    <td>RNA-FM_mlp</td>
+                    <td>0.809<sub>(0.001)</sub></td>
+                    <td>0.682<sub>(0.011)</sub></td>
+                    <td>0.655<sub>(0.015)</sub></td>
+                    <td>0.812<sub>(0.002)</sub></td>
+                    <td>0.692<sub>(0.002)</sub></td>
+                    <td>0.662<sub>(0.009)</sub></td>
+                    <td>0.613<sub>(0.001)</sub></td>
+                    <td>0.371<sub>(0.005)</sub></td>
+                    <td>0.429<sub>(0.006)</sub></td>
+                    <td>0.757<sub>(0.001)</sub></td>
+                    <td>0.633<sub>(0.008)</sub></td>
+                    <td>0.640<sub>(0.008)</sub></td>
+                  </tr>
+                  <tr>
+                    <td>3UTRBERT_mlp</td>
+                    <td>0.819<sub>(0.001)</sub></td>
+                    <td>0.697<sub>(0.004)</sub></td>
+                    <td>0.668<sub>(0.004)</sub></td>
+                    <td>0.813<sub>(0.002)</sub></td>
+                    <td>0.697<sub>(0.013)</sub></td>
+                    <td>0.678<sub>(0.016)</sub></td>
+                    <td>0.624<sub>(0.003)</sub></td>
+                    <td>0.367<sub>(0.012)</sub></td>
+                    <td>0.406<sub>(0.016)</sub></td>
+                    <td>0.764<sub>(0.003)</sub></td>
+                    <td>0.643<sub>(0.009)</sub></td>
+                    <td>0.650<sub>(0.010)</sub></td>
+                  </tr>
+                  <tr>
+                    <td>SpliceBERT_mlp</td>
+                    <td>0.888<sub>(0.001)</sub></td>
+                    <td>0.781<sub>(0.004)</sub></td>
+                    <td>0.746<sub>(0.006)</sub></td>
+                    <td>0.889<sub>(0.001)</sub></td>
+                    <td>0.818<sub>(0.005)</sub></td>
+                    <td>0.827<sub>(0.006)</sub></td>
+                    <td>0.664<sub>(0.003)</sub></td>
+                    <td>0.385<sub>(0.006)</sub></td>
+                    <td>0.430<sub>(0.014)</sub></td>
+                    <td>0.763<sub>(0.003)</sub></td>
+                    <td>0.586<sub>(0.008)</sub></td>
+                    <td>0.594<sub>(0.008)</sub></td>
+                  </tr>
+                  <tr>
+                    <td colspan="13"><strong>(+CNN)</strong></td>
+                  </tr>
+                  <tr>
+                    <td>DNABERT2_cnn</td>
+                    <td>0.864<sub>(0.003)</sub></td>
+                    <td>0.713<sub>(0.005)</sub></td>
+                    <td>0.699<sub>(0.009)</sub></td>
+                    <td>0.854<sub>(0.003)</sub></td>
+                    <td>0.714<sub>(0.011)</sub></td>
+                    <td>0.738<sub>(0.003)</sub></td>
+                    <td>0.646<sub>(0.002)</sub></td>
+                    <td>0.332<sub>(0.019)</sub></td>
+                    <td>0.388<sub>(0.016)</sub></td>
+                    <td>0.753<sub>(0.005)</sub></td>
+                    <td>0.594<sub>(0.010)</sub></td>
+                    <td>0.598<sub>(0.010)</sub></td>
+                  </tr>
+                  <tr>
+                    <td>HyenaDNA_cnn</td>
+                    <td>0.954<sub>(0.001)</sub></td>
+                    <td>0.884<sub>(0.004)</sub></td>
+                    <td>0.877<sub>(0.006)</sub></td>
+                    <td>0.946<sub>(0.001)</sub></td>
+                    <td>0.842<sub>(0.004)</sub></td>
+                    <td>0.841<sub>(0.002)</sub></td>
+                    <td>0.682<sub>(0.005)</sub></td>
+                    <td>0.429<sub>(0.007)</sub></td>
+                    <td>0.480<sub>(0.005)</sub></td>
+                    <td>0.767<sub>(0.006)</sub></td>
+                    <td>0.650<sub>(0.005)</sub></td>
+                    <td>0.650<sub>(0.005)</sub></td>
+                  </tr>
+                  <tr>
+                    <td>NT_cnn</td>
+                    <td>0.927<sub>(0.002)</sub></td>
+                    <td>0.829<sub>(0.002)</sub></td>
+                    <td>0.815<sub>(0.006)</sub></td>
+                    <td>0.904<sub>(0.001)</sub></td>
+                    <td>0.795<sub>(0.003)</sub></td>
+                    <td>0.796<sub>(0.002)</sub></td>
+                    <td>0.601<sub>(0.001)</sub></td>
+                    <td>0.356<sub>(0.007)</sub></td>
+                    <td>0.402<sub>(0.009)</sub></td>
+                    <td>0.739<sub>(0.002)</sub></td>
+                    <td>0.624<sub>(0.010)</sub></td>
+                    <td>0.628<sub>(0.009)</sub></td>
+                  </tr>
+                  <tr>
+                    <td>RNABERT_cnn</td>
+                    <td>0.929<sub>(0.007)</sub></td>
+                    <td>0.836<sub>(0.007)</sub></td>
+                    <td>0.806<sub>(0.013)</sub></td>
+                    <td>0.904<sub>(0.001)</sub></td>
+                    <td>0.785<sub>(0.001)</sub></td>
+                    <td>0.759<sub>(0.000)</sub></td>
+                    <td>0.530<sub>(0.006)</sub></td>
+                    <td>0.318<sub>(0.004)</sub></td>
+                    <td>0.370<sub>(0.009)</sub></td>
+                    <td>0.725<sub>(0.003)</sub></td>
+                    <td>0.630<sub>(0.004)</sub></td>
+                    <td>0.633<sub>(0.004)</sub></td>
+                  </tr>
+                  <tr>
+                    <td>RNA-FM_cnn</td>
+                    <td>0.960<sub>(0.001)</sub></td>
+                    <td>0.883<sub>(0.004)</sub></td>
+                    <td>0.883<sub>(0.008)</sub></td>
+                    <td>0.946<sub>(0.000)</sub></td>
+                    <td>0.837<sub>(0.005)</sub></td>
+                    <td>0.863<sub>(0.003)</sub></td>
+                    <td>0.757<sub>(0.003)</sub></td>
+                    <td>0.484<sub>(0.003)</sub></td>
+                    <td>0.524<sub>(0.011)</sub></td>
+                    <td>0.772<sub>(0.002)</sub></td>
+                    <td>0.652<sub>(0.015)</sub></td>
+                    <td>0.657<sub>(0.016)</sub></td>
+                  </tr>
+                  <tr>
+                    <td>3UTRBERT_cnn</td>
+                    <td>0.955<sub>(0.002)</sub></td>
+                    <td>0.871<sub>(0.007)</sub></td>
+                    <td>0.866<sub>(0.008)</sub></td>
+                    <td>0.946<sub>(0.001)</sub></td>
+                    <td>0.830<sub>(0.005)</sub></td>
+                    <td>0.838<sub>(0.014)</sub></td>
+                    <td>0.732<sub>(0.001)</sub></td>
+                    <td>0.461<sub>(0.005)</sub></td>
+                    <td>0.495<sub>(0.009)</sub></td>
+                    <td>0.774<sub>(0.003)</sub></td>
+                    <td>0.645<sub>(0.016)</sub></td>
+                    <td>0.649<sub>(0.015)</sub></td>
+                  </tr>
+                  <tr>
+                    <td>SpliceBERT_cnn</td>
+                    <td>0.958<sub>(0.000)</sub></td>
+                    <td>0.909<sub>(0.004)</sub></td>
+                    <td>0.900<sub>(0.012)</sub></td>
+                    <td>0.943<sub>(0.001)</sub></td>
+                    <td>0.878<sub>(0.012)</sub></td>
+                    <td>0.887<sub>(0.013)</sub></td>
+                    <td>0.775<sub>(0.004)</sub></td>
+                    <td>0.498<sub>(0.026)</sub></td>
+                    <td>0.536<sub>(0.026)</sub></td>
+                    <td>0.778<sub>(0.001)</sub></td>
+                    <td>0.608<sub>(0.020)</sub></td>
+                    <td>0.611<sub>(0.022)</sub></td>
+                  </tr>
+                  <tr>
+                    <td colspan="13"><strong>(+ResNet)</strong></td>
+                  </tr>
+                  <tr>
+                    <td>DNABERT2_resnet</td>
+                    <td>0.938<sub>(0.000)</sub></td>
+                    <td>0.858<sub>(0.007)</sub></td>
+                    <td>0.847<sub>(0.010)</sub></td>
+                    <td>0.929<sub>(0.003)</sub></td>
+                    <td>0.844<sub>(0.002)</sub></td>
+                    <td>0.848<sub>(0.004)</sub></td>
+                    <td>0.708<sub>(0.002)</sub></td>
+                    <td>0.392<sub>(0.007)</sub></td>
+                    <td>0.447<sub>(0.007)</sub></td>
+                    <td>0.740<sub>(0.006)</sub></td>
+                    <td>0.605<sub>(0.011)</sub></td>
+                    <td>0.609<sub>(0.013)</sub></td>
+                  </tr>
+                  <tr>
+                    <td>HyenaDNA_resnet</td>
+                    <td class="lightblue">0.965<sub>(0.000)</sub></td>
+                    <td>0.900<sub>(0.006)</sub></td>
+                    <td>0.892<sub>(0.010)</sub></td>
+                    <td>0.955<sub>(0.001)</sub></td>
+                    <td>0.843<sub>(0.010)</sub></td>
+                    <td>0.848<sub>(0.011)</sub></td>
+                    <td>0.657<sub>(0.002)</sub></td>
+                    <td>0.404<sub>(0.023)</sub></td>
+                    <td>0.462<sub>(0.007)</sub></td>
+                    <td class="darkblue">0.780<sub>(0.001)</sub></td>
+                    <td class="darkblue">0.685<sub>(0.007)</sub></td>
+                    <td class="darkblue">0.687<sub>(0.007)</sub></td>
+                  </tr>
+                  <tr>
+                    <td>NT_resnet</td>
+                    <td>0.955<sub>(0.001)</sub></td>
+                    <td>0.889<sub>(0.009)</sub></td>
+                    <td>0.891<sub>(0.007)</sub></td>
+                    <td>0.938<sub>(0.002)</sub></td>
+                    <td>0.853<sub>(0.002)</sub></td>
+                    <td>0.859<sub>(0.002)</sub></td>
+                    <td class="darkblue">0.804<sub>(0.002)</sub></td>
+                    <td class="darkblue">0.548<sub>(0.010)</sub></td>
+                    <td class="darkblue">0.592<sub>(0.009)</sub></td>
+                    <td>0.741<sub>(0.012)</sub></td>
+                    <td>0.638<sub>(0.008)</sub></td>
+                    <td>0.642<sub>(0.007)</sub></td>
+                  </tr>
+                  <tr>
+                    <td>RNABERT_resnet</td>
+                    <td class="lightblue">0.965<sub>(0.000)</sub></td>
+                    <td>0.905<sub>(0.002)</sub></td>
+                    <td>0.898<sub>(0.003)</sub></td>
+                    <td>0.953<sub>(0.001)</sub></td>
+                    <td>0.849<sub>(0.007)</sub></td>
+                    <td>0.835<sub>(0.006)</sub></td>
+                    <td>0.740<sub>(0.002)</sub></td>
+                    <td>0.515<sub>(0.015)</sub></td>
+                    <td>0.557<sub>(0.011)</sub></td>
+                    <td>0.737<sub>(0.004)</sub></td>
+                    <td>0.625<sub>(0.009)</sub></td>
+                    <td>0.626<sub>(0.007)</sub></td>
+                  </tr>
+                  <tr>
+                    <td>RNA-FM_resnet</td>
+                    <td class="darkblue">0.967<sub>(0.000)</sub></td>
+                    <td class="lightblue">0.908<sub>(0.003)</sub></td>
+                    <td>0.910<sub>(0.003)</sub></td>
+                    <td class="darkblue">0.956<sub>(0.000)</sub></td>
+                    <td>0.851<sub>(0.002)</sub></td>
+                    <td>0.863<sub>(0.003)</sub></td>
+                    <td>0.780<sub>(0.001)</sub></td>
+                    <td>0.533<sub>(0.021)</sub></td>
+                    <td class="lightblue">0.572<sub>(0.027)</sub></td>
+                    <td>0.776<sub>(0.001)</sub></td>
+                    <td class="lightblue">0.663<sub>(0.014)</sub></td>
+                    <td class="lightblue">0.669<sub>(0.015)</sub></td>
+                  </tr>
+                  <tr>
+                    <td>3UTRBERT_resnet</td>
+                    <td class="darkblue">0.967<sub>(0.000)</sub></td>
+                    <td>0.906<sub>(0.002)</sub></td>
+                    <td class="lightblue">0.912<sub>(0.002)</sub></td>
+                    <td class="lightblue">0.954<sub>(0.001)</sub></td>
+                    <td>0.866<sub>(0.006)</sub></td>
+                    <td>0.872<sub>(0.010)</sub></td>
+                    <td>0.744<sub>(0.004)</sub></td>
+                    <td>0.461<sub>(0.005)</sub></td>
+                    <td>0.495<sub>(0.009)</sub></td>
+                    <td>0.774<sub>(0.003)</sub></td>
+                    <td class="lightblue">0.645<sub>(0.016)</sub></td>
+                    <td class="lightblue">0.649<sub>(0.015)</sub></td>
+                  </tr>
+                  <tr>
+                    <td>SpliceBERT_resnet</td>
+                    <td>0.716<sub>(0.005)</sub></td>
+                    <td class="darkblue">0.789<sub>(0.005)</sub></td>
+                    <td>0.895<sub>(0.002)</sub></td>
+                    <td class="darkblue">0.713<sub>(0.002)</sub></td>
+                    <td class="lightblue">0.710<sub>(0.008)</sub></td>
+                    <td class="lightblue">0.705<sub>(0.001)</sub></td>
+                    <td>0.788<sub>(0.002)</sub></td>
+                    <td>0.746<sub>(0.006)</sub></td>
+                    <td class="darkblue">0.750<sub>(0.004)</sub></td>
+                    <td class="lightblue">0.675<sub>(0.007)</sub></td>
+                    <td class="darkblue">0.749<sub>(0.006)</sub></td>
+                  </tr>
+                </tbody>
+              </table>
+            </div> <!-- End of Table Container -->
+            <p><em>注：</em> ↑ 表示指标越高越好，↓ 表示指标越低越好。</p>
+          </div>
+
+          <!-- JavaScript 用于处理滚动按钮的点击事件 -->
+          <script>
+            $(document).ready(function(){
+              // 已有的切换按钮代码...
+
+              // Function-related Tasks 的水平滚动按钮
+              $('#scroll-left-function').click(function(){
+                $('#function-table-container').animate({
+                  scrollLeft: '-=200'
+                }, 'slow');
+              });
+
+              $('#scroll-right-function').click(function(){
+                $('#function-table-container').animate({
+                  scrollLeft: '+=200'
+                }, 'slow');
+              });
+
+              // Function-related Tasks 的垂直滚动按钮
+              $('#scroll-up-function').click(function(){
+                $('#function-table-container').animate({
+                  scrollTop: '-=200'
+                }, 'slow');
+              });
+
+              $('#scroll-down-function').click(function(){
+                $('#function-table-container').animate({
+                  scrollTop: '+=200'
+                }, 'slow');
+              });
+            });
+          </script>
+
+
+
+
+
+
       </div>
+      <!--/ Leaderboard Section -->
     </div>
-    <!--/ Matting. -->
-
-    <!-- Animation. -->
-    <div class="columns is-centered">
-      <div class="column is-full-width">
-        <h2 class="title is-3">Animation</h2>
-
-        <!-- Interpolating. -->
-        <h3 class="title is-4">Interpolating states</h3>
-        <div class="content has-text-justified">
-          <p>
-            We can also animate the scene by interpolating the deformation latent codes of two input
-            frames. Use the slider here to linearly interpolate between the left frame and the right
-            frame.
-          </p>
-        </div>
-        <div class="columns is-vcentered interpolation-panel">
-          <div class="column is-3 has-text-centered">
-            <img src="./static/images/interpolate_start.jpg"
-                 class="interpolation-image"
-                 alt="Interpolate start reference image."/>
-            <p>Start Frame</p>
-          </div>
-          <div class="column interpolation-video-column">
-            <div id="interpolation-image-wrapper">
-              Loading...
-            </div>
-            <input class="slider is-fullwidth is-large is-info"
-                   id="interpolation-slider"
-                   step="1" min="0" max="100" value="0" type="range">
-          </div>
-          <div class="column is-3 has-text-centered">
-            <img src="./static/images/interpolate_end.jpg"
-                 class="interpolation-image"
-                 alt="Interpolation end reference image."/>
-            <p class="is-bold">End Frame</p>
-          </div>
-        </div>
-        <br/>
-        <!--/ Interpolating. -->
-
-        <!-- Re-rendering. -->
-        <h3 class="title is-4">Re-rendering the input video</h3>
-        <div class="content has-text-justified">
-          <p>
-            Using <span class="dnerf">Nerfies</span>, you can re-render a video from a novel
-            viewpoint such as a stabilized camera by playing back the training deformations.
-          </p>
-        </div>
-        <div class="content has-text-centered">
-          <video id="replay-video"
-                 controls
-                 muted
-                 preload
-                 playsinline
-                 width="75%">
-            <source src="./static/videos/replay.mp4"
-                    type="video/mp4">
-          </video>
-        </div>
-        <!--/ Re-rendering. -->
-
-      </div>
-    </div>
-    <!--/ Animation. -->
-
-
-    <!-- Concurrent Work. -->
-    <div class="columns is-centered">
-      <div class="column is-full-width">
-        <h2 class="title is-3">Related Links</h2>
-
-        <div class="content has-text-justified">
-          <p>
-            There's a lot of excellent work that was introduced around the same time as ours.
-          </p>
-          <p>
-            <a href="https://arxiv.org/abs/2104.09125">Progressive Encoding for Neural Optimization</a> introduces an idea similar to our windowed position encoding for coarse-to-fine optimization.
-          </p>
-          <p>
-            <a href="https://www.albertpumarola.com/research/D-NeRF/index.html">D-NeRF</a> and <a href="https://gvv.mpi-inf.mpg.de/projects/nonrigid_nerf/">NR-NeRF</a>
-            both use deformation fields to model non-rigid scenes.
-          </p>
-          <p>
-            Some works model videos with a NeRF by directly modulating the density, such as <a href="https://video-nerf.github.io/">Video-NeRF</a>, <a href="https://www.cs.cornell.edu/~zl548/NSFF/">NSFF</a>, and <a href="https://neural-3d-video.github.io/">DyNeRF</a>
-          </p>
-          <p>
-            There are probably many more by the time you are reading this. Check out <a href="https://dellaert.github.io/NeRF/">Frank Dellart's survey on recent NeRF papers</a>, and <a href="https://github.com/yenchenlin/awesome-NeRF">Yen-Chen Lin's curated list of NeRF papers</a>.
-          </p>
-        </div>
-      </div>
-    </div>
-    <!--/ Concurrent Work. -->
-
   </div>
 </section>
 
-
-<section class="section" id="BibTeX">
-  <div class="container is-max-desktop content">
-    <h2 class="title">BibTeX</h2>
-    <pre><code>@article{park2021nerfies,
-  author    = {Park, Keunhong and Sinha, Utkarsh and Barron, Jonathan T. and Bouaziz, Sofien and Goldman, Dan B and Seitz, Steven M. and Martin-Brualla, Ricardo},
-  title     = {Nerfies: Deformable Neural Radiance Fields},
-  journal   = {ICCV},
-  year      = {2021},
-}</code></pre>
-  </div>
-</section>
-
-
+<!-- Footer（根据需要自定义或移除） -->
 <footer class="footer">
   <div class="container">
     <div class="content has-text-centered">
-      <a class="icon-link"
-         href="./static/videos/nerfies_paper.pdf">
-        <i class="fas fa-file-pdf"></i>
-      </a>
-      <a class="icon-link" href="https://github.com/keunhong" class="external-link" disabled>
-        <i class="fab fa-github"></i>
-      </a>
-    </div>
-    <div class="columns is-centered">
-      <div class="column is-8">
-        <div class="content">
-          <p>
-            This website is licensed under a <a rel="license"
-                                                href="http://creativecommons.org/licenses/by-sa/4.0/">Creative
-            Commons Attribution-ShareAlike 4.0 International License</a>.
-          </p>
-          <p>
-            This means you are free to borrow the <a
-              href="https://github.com/nerfies/nerfies.github.io">source code</a> of this website,
-            we just ask that you link back to this page in the footer.
-            Please remember to remove the analytics code included in the header of the website which
-            you do not want on your website.
-          </p>
-        </div>
-      </div>
+      <!-- 为了双盲审稿，移除了页脚内容 -->
     </div>
   </div>
 </footer>
+
+<!-- JavaScript 用于切换详细结果表格的显示 -->
+<script>
+  $(document).ready(function(){
+    // Existing toggle for structure detailed results
+    $('#toggle-details').click(function(){
+      $('#detailed-results').slideToggle("slow");
+      // 获取当前aria-expanded状态
+      var expanded = $(this).attr('aria-expanded') === 'true';
+      // 切换aria-expanded属性
+      $(this).attr('aria-expanded', !expanded);
+      // 切换按钮文本
+      if (!expanded) {
+        $(this).text("Hide Detailed Results for Second Structure");
+      } else {
+        $(this).text("Show Detailed Results for Second Structure");
+      }
+    });
+
+    // 新增的 toggle for interaction detailed results
+    $('#toggle-interaction-details').click(function(){
+      $('#interaction-detailed-results').slideToggle("slow");
+      // 获取当前aria-expanded状态
+      var expanded = $(this).attr('aria-expanded') === 'true';
+      // 切换aria-expanded属性
+      $(this).attr('aria-expanded', !expanded);
+      // 切换按钮文本
+      if (!expanded) {
+        $(this).text("Hide Detailed Binary Binding Interaction Results");
+      } else {
+        $(this).text("Show Detailed Binary Binding Interaction Results");
+      }
+    });
+  });
+</script>
 
 </body>
 </html>
